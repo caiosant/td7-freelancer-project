@@ -20,6 +20,10 @@ class ProjectsController < ApplicationController
         end
     end
 
+    def my_projects
+        @projects = current_project_owner.projects
+    end
+
     private
 
     def project_params

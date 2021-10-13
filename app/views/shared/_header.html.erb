@@ -17,6 +17,7 @@
             <nav>
                 <ul>
                     <li> <%= link_to 'Cadastrar Projeto', new_project_path %> </li>
+                    <li> <%= link_to 'Meus Projetos', my_projects_projects_path %> </li>
                     <li> <%= current_project_owner.email %> </li>
                     <li> <%= link_to 'Logout', destroy_project_owner_session_path, method: 'delete'%> </li>
                 </ul>

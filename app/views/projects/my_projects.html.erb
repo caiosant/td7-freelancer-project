@@ -1,0 +1,16 @@
+<h1>Meus Projetos</h1>
+
+<% if @projects.empty? %>
+    <div>
+        <h3>Você não tem projetos cadastrados.</h3><br>
+    </div>
+    <div>
+        <%= link_to 'Clique aqui para criar o seu primeiro projeto!', new_project_path %>
+    </div>
+<% end %>
+
+<% @projects.each do |project|%>
+    <li><%= link_to project.title, project %></li>
+    <li><%= project.deadline %></li>
+<% end %>
+
