@@ -2,7 +2,7 @@
 pt-BR:
   activerecord:
     models:
-      project_owner: 'Usuário'
+      project_owner: 'Dono do Projeto'
     attributes:
       project_owner:
         email: 'E-mail'

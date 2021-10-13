@@ -1,0 +1,39 @@
+<%= form_with(model: @project) do |f| %>
+  <div>
+    <%= f.label :title %>
+    <% @project.errors.full_messages_for(:title).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :description %>
+    <% @project.errors.full_messages_for(:description).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+    <%= f.text_field :description %>
+  </div>
+  <div>
+    <%= f.label :max_value %>
+    <% @project.errors.full_messages_for(:max_value).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+    <%= f.number_field :max_value %>
+  </div>
+  <div>
+    <%= f.label :deadline %>
+    <% @project.errors.full_messages_for(:deadline).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+    <%= f.date_field :deadline %>
+  </div>
+  <div>
+    <%= f.label :location %>
+    <% @project.errors.full_messages_for(:location).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+    <%= f.select :location, options_for_select([['Remoto', 'Remoto'], ['Presencial', 'Presencial'], ['Híbrido', 'Híbrido']]), {include_blank: 'Selecione uma Opção'} %>
+  </div>
+
+  <%= f.submit 'Cadastar Projeto' %>
+<% end %>

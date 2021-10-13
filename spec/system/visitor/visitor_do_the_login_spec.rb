@@ -14,6 +14,7 @@ describe 'A visitor do the login' do
     
             expect(page).to have_content('caio@gmail.com')
             expect(page).to have_link('Logout')
+            expect(page).to have_link('Cadastrar Projeto')
         end
         
         it 'and miss the e-mail' do

@@ -1,0 +1,12 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      project: 'Projeto'
+    attributes:
+      project:
+        title: 'Nome do Projeto'
+        description: 'Descrição'
+        max_value: 'Valor Máximo por Hora'
+        deadline: 'Data Limite para Propostas'
+        location: 'Forma de Trabalho'

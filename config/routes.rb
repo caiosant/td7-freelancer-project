@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   root to: "home#index"
 
+  resources :projects, only: [:new, :create, :show,]
+
   devise_for :project_owners, path: 'project_owners'
   devise_for :freelancers, path: 'freelancers'
 end

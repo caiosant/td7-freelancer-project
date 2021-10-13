@@ -16,8 +16,9 @@
         <div class='menu'>
             <nav>
                 <ul>
-                    <%= current_project_owner.email %>
-                    <%= link_to 'Logout', destroy_project_owner_session_path, method: 'delete'%>
+                    <li> <%= link_to 'Cadastrar Projeto', new_project_path %> </li>
+                    <li> <%= current_project_owner.email %> </li>
+                    <li> <%= link_to 'Logout', destroy_project_owner_session_path, method: 'delete'%> </li>
                 </ul>
             </nav>
         </div>

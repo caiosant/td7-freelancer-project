@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe 'visitor visit homepage' do
-
     it 'successfully' do
 
         visit root_path
