@@ -9,7 +9,7 @@ class Project < ApplicationRecord
     
     def deadline_is_possible?
         return if deadline.blank?
-        if Date.today() > deadline
+        if Date.current() > deadline
             errors.add(:deadline, 'precisa maior ou igual a hoje')
         end
     end
