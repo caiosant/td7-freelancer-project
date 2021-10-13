@@ -1,0 +1,10 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      project_owner: 'Usuário'
+    attributes:
+      project_owner:
+        email: 'E-mail'
+        password: 'Senha'
+        password_confirmation: 'Confirmação de Senha'

@@ -1,1 +1,12 @@
+<% unless freelancer_signed_in? || project_owner_signed_in? %>
+    <h2>O que deseja fazer?</h2>
 
+    <ul>
+        <li>
+            <%= link_to 'Oferecer Projetos', new_project_owner_session_path %> 
+        </li>
+        <li>
+            <%= link_to 'Entrar em Projetos', new_freelancer_session_path %>
+        </li>
+    </ul>
+<% end %>

@@ -1,52 +1,119 @@
 require 'rails_helper'
 
 describe 'A visitor do the login' do
-    it 'and got successfully using e-mail' do
-        caio = User.create!({full_name: 'Caio Silva', username: 'caiosant', email: 'caio@gmail.com', password: '12345678'})
-
-        visit root_path
-        click_on 'Login'
-
-        fill_in 'Usuário ou E-mail', with: caio.email
-        fill_in 'Senha', with: caio.password 
-        click_on 'Entrar'
-
-        expect(page).to have_content('caiosant')
-        expect(page).to have_link('Logout')
-        expect(page).to_not have_link('Login')
-        expect(page).to_not have_link('Cadastrar-se')
-    end
-
-    it 'and got successfully using username' do
-        caio = User.create!({full_name: 'Caio Silva', username: 'caiosant', email: 'caio@gmail.com', password: '12345678'})
-
-        visit root_path
-        click_on 'Login'
-
-        fill_in 'Usuário ou E-mail', with: caio.username
-        fill_in 'Senha', with: caio.password
-        click_on 'Entrar'
-
-        expect(page).to have_content('caiosant')
-        expect(page).to have_link('Logout')
-        expect(page).to_not have_link('Login')
-        expect(page).to_not have_link('Cadastrar-se')
-    end
-
+    context 'as project owner' do
+        it 'and got successfully using e-mail' do
+            caio = ProjectOwner.create!({email: 'caio@gmail.com', password: '12345678'})
     
-    it 'and miss the email' do
-        caio = User.create!({full_name: 'Caio Silva', username: 'caiosant', email: 'caio@gmail.com', password: '12345678'})
+            visit root_path
+            click_on 'Oferecer Projetos'
+    
+            fill_in 'E-mail', with: caio.email
+            fill_in 'Senha', with: caio.password 
+            click_on 'Entrar'
+    
+            expect(page).to have_content('caio@gmail.com')
+            expect(page).to have_link('Logout')
+        end
+        
+        it 'and miss the e-mail' do
+            caio = ProjectOwner.create!({email: 'caio@gmail.com', password: '12345678'})
+    
+            visit root_path
+            click_on 'Oferecer Projetos'
+    
+            fill_in 'E-mail', with: 'caio1@gmail.com'
+            fill_in 'Senha', with: caio.password
+            click_on 'Entrar'
+            
+            expect(page).to have_content('E-mail ou senha inválida.')
+            expect(page).to have_content('E-mail')
+            expect(page).to have_content('Senha')
+            expect(page).to have_button("Entrar")
+            expect(page).to have_content('Não tem sua conta ainda?')
+            expect(page).to have_link('Cadastrar-se')
+            expect(page).to have_link('Esqueceu sua senha?')
+            expect(page).to_not have_content('caio1@gmail.com')
+            expect(page).to_not have_link('Logout')
+        end
 
-        visit root_path
-        click_on 'Login'
+        it 'and miss the password' do
+            caio = ProjectOwner.create!({email: 'caio@gmail.com', password: '12345678'})
+    
+            visit root_path
+            click_on 'Oferecer Projetos'
+    
+            fill_in 'E-mail', with: 'caio1@gmail.com'
+            fill_in 'Senha', with: caio.password
+            click_on 'Entrar'
+    
+            expect(page).to have_content('E-mail ou senha inválida.')
+            expect(page).to have_content('E-mail')
+            expect(page).to have_content('Senha')
+            expect(page).to have_button("Entrar")
+            expect(page).to have_content('Não tem sua conta ainda?')
+            expect(page).to have_link('Cadastrar-se')
+            expect(page).to have_link('Esqueceu sua senha?')
+            expect(page).to_not have_content('caio1@gmail.com')
+            expect(page).to_not have_link('Logout')
+        end
+    end
 
-        fill_in 'Usuário ou E-mail', with: 'caio1@gmail.com'
-        fill_in 'Senha', with: caio.password
-        click_on 'Entrar'
+    context 'as freelancer' do
+        it 'and got successfully using e-mail' do
+            caio = Freelancer.create!({email: 'caio@gmail.com', password: '12345678'})
+    
+            visit root_path
+            click_on 'Entrar em Projetos'
+    
+            fill_in 'E-mail', with: caio.email
+            fill_in 'Senha', with: caio.password 
+            click_on 'Entrar'
+    
+            expect(page).to have_content('caio@gmail.com')
+            expect(page).to have_link('Logout')
+        end
+        
+        it 'and miss the e-mail' do
+            caio = Freelancer.create!({email: 'caio@gmail.com', password: '12345678'})
+    
+            visit root_path
+            click_on 'Entrar em Projetos'
+    
+            fill_in 'E-mail', with: 'caio1@gmail.com'
+            fill_in 'Senha', with: caio.password
+            click_on 'Entrar'
+            
+            expect(page).to have_content('E-mail ou senha inválida.')
+            expect(page).to have_content('E-mail')
+            expect(page).to have_content('Senha')
+            expect(page).to have_button("Entrar")
+            expect(page).to have_content('Não tem sua conta ainda?')
+            expect(page).to have_link('Cadastrar-se')
+            expect(page).to have_link('Esqueceu sua senha?')
+            expect(page).to_not have_content('caio1@gmail.com')
+            expect(page).to_not have_link('Logout')
+        end
 
-        expect(page).to have_content('caiosant')
-        expect(page).to have_link('Logout')
-        expect(page).to_not have_link('Login')
-        expect(page).to_not have_link('Cadastrar-se')
+        it 'and miss the password' do
+            caio = Freelancer.create!({email: 'caio@gmail.com', password: '12345678'})
+    
+            visit root_path
+            click_on 'Entrar em Projetos'
+    
+            fill_in 'E-mail', with: 'caio1@gmail.com'
+            fill_in 'Senha', with: caio.password
+            click_on 'Entrar'
+    
+            expect(page).to have_content('E-mail ou senha inválida.')
+            expect(page).to have_content('E-mail')
+            expect(page).to have_content('Senha')
+            expect(page).to have_button("Entrar")
+            expect(page).to have_content('Não tem sua conta ainda?')
+            expect(page).to have_link('Cadastrar-se')
+            expect(page).to have_link('Esqueceu sua senha?')
+            expect(page).to_not have_content('caio1@gmail.com')
+            expect(page).to_not have_link('Logout')
+        end
     end
 end
