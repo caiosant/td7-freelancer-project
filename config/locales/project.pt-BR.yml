@@ -10,3 +10,4 @@ pt-BR:
         max_value: 'Valor Máximo por Hora'
         deadline: 'Data Limite para Propostas'
         location: 'Forma de Trabalho'
+        abilities: 'Habilidades'

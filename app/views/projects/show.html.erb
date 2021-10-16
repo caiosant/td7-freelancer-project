@@ -1,5 +1,8 @@
-<%= @project.title %>
-Descrição: <%= @project.description %>
-Valor Máximo por Hora: <%= @project.max_value %>
-Data Limite para Propostas: <%= @project.deadline %>
-Forma de trabalho: <%= @project.location %>
+<%= @project.title %><br>
+Descrição: <%= @project.description %><br>
+Valor Máximo por Hora: <%= @project.max_value %><br>
+Data Limite para Propostas: <%= @project.deadline %><br>
+Habilidades: <% @project.abilities.each do |ability| %>
+                <%= ability.name %>
+             <% end %><br>
+Forma de trabalho: <%= @project.location %><br>

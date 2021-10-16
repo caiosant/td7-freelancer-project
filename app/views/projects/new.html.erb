@@ -21,6 +21,13 @@
     <%= f.number_field :max_value %>
   </div>
   <div>
+    <%= f.label :abilities%>
+    <% @project.errors.full_messages_for(:abilities).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+    <%= f.collection_check_boxes :ability_ids, Ability.all, :id, :name%>
+  </div>
+  <div>
     <%= f.label :deadline %>
     <% @project.errors.full_messages_for(:deadline).each do |message| %>
       <div><%= message %></div>

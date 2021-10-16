@@ -12,7 +12,7 @@ class ProjectsController < ApplicationController
     def create
         @project = Project.new(project_params)
         @project.project_owner = current_project_owner
-
+        
         if @project.save
             redirect_to @project
         else
@@ -28,6 +28,6 @@ class ProjectsController < ApplicationController
 
     def project_params
         params.require(:project).permit(:title, :description, :max_value, 
-                                        :deadline, :location)
+                                        :deadline, :location, ability_ids: [])
     end
 end

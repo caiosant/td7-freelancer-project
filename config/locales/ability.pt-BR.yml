@@ -1,0 +1,8 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      ability: 'Habilidade'
+    attributes:
+      ability:
+        name: 'Habilidades'
