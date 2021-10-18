@@ -1,8 +1,15 @@
 class ProjectsController < ApplicationController
+    before_action :completed_profile?
     before_action :authenticate_project_owner!, only: [:new, :create]
+
+
+    def index
+        @projects = Project.all
+    end
 
     def show
         @project = Project.find(params[:id])
+        @proposal = Proposal.new()
     end
     
     def new
@@ -24,6 +31,10 @@ class ProjectsController < ApplicationController
         @projects = current_project_owner.projects
     end
 
+    def search
+        @projects = Project.where('title like ? OR description like ?', "%#{params[:q]}%", "%#{params[:q]}%")
+    end
+    
     private
 
     def project_params

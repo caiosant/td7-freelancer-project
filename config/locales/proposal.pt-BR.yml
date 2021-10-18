@@ -1,0 +1,11 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      proposal: 'Proposta'
+    attributes:
+      proposal:
+        application_reason: 'Motivo da Aplicação'
+        hours_value: 'Valor por Hora'
+        hours: 'Total de Horas'
+        deadline_proposal: 'Previsão de entrega'

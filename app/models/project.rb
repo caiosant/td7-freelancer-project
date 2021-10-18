@@ -1,5 +1,7 @@
 class Project < ApplicationRecord
     belongs_to :project_owner
+    has_many :proposals
+    has_many :freelancers, through: :proposals
     has_many :project_abilities
     has_many :abilities, through: :project_abilities
 

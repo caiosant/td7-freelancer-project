@@ -1,0 +1,7 @@
+<li>Freelancer: <%= link_to @proposal.freelancer.profile.social_name, profile_path(@freelancer)%></li>
+<li>Valor por Hora: <%= number_to_currency @proposal.hour_value %></li>
+<li>Quantidade de horas: <%= @proposal.hours%></li>
+<li>Motivação: <%= @proposal.application_reason%></li>
+<li><%= I18n.t(@proposal.status) %></li>
+<li><%= link_to 'Aceitar Proposta', accept_project_proposal_path(@proposal.id), method: :post %></li>
+<li><%= link_to 'Rejeitar Proposta', reject_project_proposal_path(@proposal.id), method: :post %></li>

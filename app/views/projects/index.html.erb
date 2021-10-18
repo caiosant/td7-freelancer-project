@@ -1,0 +1,32 @@
+<h1>Projetos Disponívels</h1>
+
+<div>
+    <h3>Filtrar por:</h3>
+    <%= form_with url: search_path, method: :get do %>
+        <%= label_tag :q, 'Busca:' %>
+        <%= text_field_tag :q %>
+        <%= submit_tag 'Pesquisar' %>
+    <% end %>
+</div>
+
+<% if @projects.empty?%>
+    <div>
+        Não existem projetos disponíveis no momento
+    </div>
+<% end %>
+
+<div>
+    <% @projects.each do |project|%>
+        <div>
+            <li><%= link_to project.title, project %></li>
+            <li>Data Limite para Propostas: <%= I18n.l(project.deadline) %></li>
+            <li>Valor máximo por hora: <%= project.max_value %></li>
+            <li>
+                Habilidade(s): 
+                <% project.abilities.each do |a| %>
+                    <%= a.name %>
+                <% end %>
+            </li>
+        </div>
+    <% end %>
+</div>

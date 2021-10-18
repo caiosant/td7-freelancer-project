@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_13_152016) do
+ActiveRecord::Schema.define(version: 2021_10_17_115558) do
 
   create_table "abilities", force: :cascade do |t|
     t.string "name"
@@ -58,6 +58,17 @@ ActiveRecord::Schema.define(version: 2021_10_13_152016) do
     t.index ["reset_password_token"], name: "index_freelancers_on_reset_password_token", unique: true
   end
 
+  create_table "profiles", force: :cascade do |t|
+    t.string "full_name"
+    t.string "social_name"
+    t.date "birth_date"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "freelancer_id", null: false
+    t.index ["freelancer_id"], name: "index_profiles_on_freelancer_id"
+  end
+
   create_table "project_abilities", force: :cascade do |t|
     t.integer "ability_id", null: false
     t.integer "project_id", null: false
@@ -91,27 +102,26 @@ ActiveRecord::Schema.define(version: 2021_10_13_152016) do
     t.index ["project_owner_id"], name: "index_projects_on_project_owner_id"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
+  create_table "proposals", force: :cascade do |t|
+    t.text "application_reason"
+    t.decimal "hour_value"
+    t.integer "hours"
+    t.date "deadline_proposal"
+    t.integer "project_id", null: false
+    t.integer "freelancer_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "full_name"
-    t.string "social_name"
-    t.string "birth_date"
-    t.string "graduate"
-    t.text "description"
-    t.string "username"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.integer "status", default: 5
+    t.index ["freelancer_id"], name: "index_proposals_on_freelancer_id"
+    t.index ["project_id"], name: "index_proposals_on_project_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "profiles", "freelancers"
   add_foreign_key "project_abilities", "abilities"
   add_foreign_key "project_abilities", "projects"
   add_foreign_key "projects", "project_owners"
+  add_foreign_key "proposals", "freelancers"
+  add_foreign_key "proposals", "projects"
 end

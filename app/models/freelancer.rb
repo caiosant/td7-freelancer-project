@@ -3,4 +3,14 @@ class Freelancer < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  has_many :proposals
+  has_many :projects, through: :proposals
+  
+  has_one :profile
+  after_create :create_profile
+
+  def create_profile
+    Profile.create(freelancer: self)
+  end
 end

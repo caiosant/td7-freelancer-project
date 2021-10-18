@@ -1,0 +1,19 @@
+<h1>Meu Perfil</h1>
+
+<div>
+Nome Completo: <%= @profile.full_name %>
+</div>
+
+<div>
+Nome Social: <%= @profile.social_name %>
+</div>
+
+<div>
+Data de Nascimento: <%= I18n.l(@profile.birth_date) %>
+</div>
+
+<div>
+Descrição: <%= @profile.description %>
+</div>
+
+<%= link_to 'Editar', edit_profile_path %>

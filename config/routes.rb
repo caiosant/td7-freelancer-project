@@ -4,10 +4,20 @@ Rails.application.routes.draw do
 
   root to: "home#index"
 
-  resources :projects, only: [:new, :create, :show,] do
+  resources :projects, only: [:index, :new, :create, :show,] do
     get 'my_projects', on: :collection
+    resources :proposals, only: [:show, :create] do
+        post 'accept', on: :member
+        post 'reject', on: :member
+    end
   end
+  
+  get 'search', to: 'projects#search'
+  get 'my_proposals', to:'proposals#my_proposals'
+  
 
   devise_for :project_owners, path: 'project_owners'
   devise_for :freelancers, path: 'freelancers'
+
+  resources :profiles, only: [:show, :edit, :update]
 end

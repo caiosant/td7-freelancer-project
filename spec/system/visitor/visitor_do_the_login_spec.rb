@@ -74,6 +74,24 @@ describe 'A visitor do the login' do
             expect(page).to have_content('caio@gmail.com')
             expect(page).to have_link('Logout')
         end
+
+        it 'and goes to his profile' do
+            caio = Freelancer.create!({email: 'caio@gmail.com', password: '12345678'})
+    
+            visit root_path
+            click_on 'Entrar em Projetos'
+    
+            fill_in 'E-mail', with: caio.email
+            fill_in 'Senha', with: caio.password 
+            click_on 'Entrar'
+            
+            expect(page).to have_content('Meu Perfil - Editar')
+            expect(page).to have_content('Nome Completo')
+            expect(page).to have_content('Nome Social')
+            expect(page).to have_content('Descrição')
+            expect(page).to have_content('Data de Nascimento')
+            expect(page).to have_button('Atualizar Perfil')
+        end
         
         it 'and miss the e-mail' do
             caio = Freelancer.create!({email: 'caio@gmail.com', password: '12345678'})

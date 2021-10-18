@@ -1,8 +1,45 @@
-<%= @project.title %><br>
+Projeto: <%= @project.title %><br>
 Descrição: <%= @project.description %><br>
-Valor Máximo por Hora: <%= @project.max_value %><br>
-Data Limite para Propostas: <%= @project.deadline %><br>
-Habilidades: <% @project.abilities.each do |ability| %>
+Valor Máximo por Hora: <%= number_to_currency @project.max_value %><br>
+Data Limite para Propostas: <%= I18n.l(@project.deadline) %><br>
+Habilidade(s): <% @project.abilities.each do |ability| %>
                 <%= ability.name %>
              <% end %><br>
 Forma de trabalho: <%= @project.location %><br>
+
+<% if freelancer_signed_in? && current_freelancer.projects.include?(@project)%>
+   <div>
+      Você já enviou proposta para este projeto, clique aqui, para ver ela.
+   </div>
+<% elsif project_owner_signed_in? && @project.project_owner == current_project_owner %>
+   <h3>Propostas:</h3>
+   <% @project.proposals.each do |proposal|%>
+      <li><%= proposal.freelancer.profile.full_name %></li>
+      <li>Valor por hora: <%= number_to_currency proposal.hour_value %></li>
+      <li>Previsão de entrega: <%= I18n.l(proposal.deadline_proposal) %>
+      <li><%= I18n.t(proposal.status) %></li>
+      <li id=<%=proposal.id%>><%= link_to 'Visualizar Proposta Completa', project_proposal_path(proposal.id) %>
+      <li><%= link_to 'Aceitar Proposta', accept_project_proposal_path(proposal.id), method: :post %></li>
+      <li><%= link_to 'Rejeitar Proposta', reject_project_proposal_path(proposal.id), method: :post %></li>
+   <% end %>
+<% else %>
+   <%= form_with model: @proposal, url: project_proposals_path(@project) do |f|%>
+      <div>
+         <%= f.label :application_reason%>
+         <%= f.text_field :application_reason%>
+      </div>
+      <div>
+         <%= f.label :hours_value%>
+         <%= f.number_field :hours_value%>
+      </div>
+      <div>
+         <%= f.label :hours%>
+         <%= f.number_field :hours%>
+      </div>
+      <div>
+         <%= f.label :deadline_proposal%>
+         <%= f.date_field :deadline_proposal%>
+      </div>
+      <%= f.submit 'Enviar Proposta' %>
+   <% end %>
+<% end %>
