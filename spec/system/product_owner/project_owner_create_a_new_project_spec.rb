@@ -24,7 +24,7 @@ describe 'project owner create a new project' do
 
         expect(page).to have_content('Projeto de Sistema')
         expect(page).to have_content('Descrição: Este projeto da Handa promete garantir qualidade de vida para muitos connect on Linked in. A Oestia, grupo que promove a intervenção da Handa no público, promoveu há cerca de três anos.')
-        expect(page).to have_content('Valor Máximo por Hora: 200')
+        expect(page).to have_content('Valor Máximo por Hora: R$ 200,00')
         expect(page).to have_content('Javascript HTML5')
         expect(page).to have_content('Forma de trabalho: Presencial')
     end
