@@ -55,8 +55,6 @@ Para iniciar o servidor basta executar o comando ````rails s```` e acessar ````h
 --- 
 ## Features:
 
-Caso alguma feature seja desenvolvida após o prazo estipulado, ela será atualizada com a data de conclusão na frete.
-
 ##### Project Owner
 - [x] Criação de conta;
 - [x] Cadastrar Projeto;
