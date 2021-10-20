@@ -39,7 +39,7 @@
     <% @project.errors.full_messages_for(:location).each do |message| %>
       <div><%= message %></div>
     <% end %>
-    <%= f.select :location, options_for_select([['Remoto', 'Remoto'], ['Presencial', 'Presencial'], ['Híbrido', 'Híbrido']]), {include_blank: 'Selecione uma Opção'} %>
+    <%= f.select :location, options_for_select(Project.location_attributes_for_select), {include_blank: 'Selecione uma Opção'} %>
   </div>
 
   <%= f.submit 'Cadastar Projeto' %>

@@ -21,9 +21,9 @@ describe 'Freelancer goes to see his proposals' do
         project_owner = ProjectOwner.create!({email: 'testepo@teste.com', password: '1234567'})
         javascript = Ability.create!({name: 'Javascript'})
         projeto_po = Project.create!({title: 'Projeto de Sistema', description: 'Este projeto da Handa promete garantir qualidade de vida para muitos connect on Linked in. A Oestia, grupo que promove a intervenção da Handa no público, promoveu há cerca de três anos.',
-                                   max_value: 200, deadline: 5.days.from_now, location: 'Presencial', abilities: [javascript], project_owner: project_owner})
+                                   max_value: 200, deadline: 5.days.from_now, location: 'local', abilities: [javascript], project_owner: project_owner})
         projeto_po2 = Project.create!({title: 'Projeto de Sistema 2.0', description: 'Este projeto da Handa 2.0 promete garantir qualidade de vida para muitos connect on Linked in. A Oestia, grupo que promove a intervenção da Handa no público, promoveu há cerca de três anos.',
-                                   max_value: 300, deadline: 3.days.from_now, location: 'Remoto', abilities: [javascript], project_owner: project_owner})
+                                   max_value: 300, deadline: 3.days.from_now, location: 'remotely', abilities: [javascript], project_owner: project_owner})
         
         
         freelancer = Freelancer.create!({email: 'teste@tester.com', password: '1234567'})

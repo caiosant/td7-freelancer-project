@@ -5,7 +5,7 @@ Data Limite para Propostas: <%= I18n.l(@project.deadline) %><br>
 Habilidade(s): <% @project.abilities.each do |ability| %>
                 <%= ability.name %>
              <% end %><br>
-Forma de trabalho: <%= @project.location %><br>
+Forma de trabalho: <%= Project.human_enum_name(:locations, @project.location) %><br>
 
 <% if freelancer_signed_in? && current_freelancer.projects.include?(@project)%>
    <div>

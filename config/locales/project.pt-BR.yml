@@ -16,3 +16,6 @@ pt-BR:
         location: 'Forma de Trabalho'
         abilities: 'Habilidades'
         status: 'Status da Proposta'
+        locations:
+          remotely: 'Remoto'
+          local: 'Presencial'

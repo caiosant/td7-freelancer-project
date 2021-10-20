@@ -10,7 +10,8 @@ class Project < ApplicationRecord
     validates :max_value, numericality: {greater_than: 0} 
     validate :deadline_is_possible?
     validate :has_ability?
-    
+
+    enum location: {remotely: 5, local: 10}
     
     def deadline_is_possible?
         return if deadline.blank?
@@ -22,6 +23,12 @@ class Project < ApplicationRecord
     def has_ability?
         if abilities.blank?
             errors.add(:abilities, 'precisa ter ao mínimo uma opção selecionada')
+        end
+    end
+
+    def self.location_attributes_for_select
+        locations.map do |location, _|
+          [I18n.t("activerecord.attributes.#{model_name.i18n_key}.locations.#{location}"), location]
         end
     end
 end

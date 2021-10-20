@@ -8,9 +8,9 @@ describe 'p.o see proposals' do
               
 
         projeto_caio = Project.create!({title: 'Projeto de Sistema', description: 'Este projeto da Handa promete garantir qualidade de vida para muitos connect on Linked in. A Oestia, grupo que promove a intervenção da Handa no público, promoveu há cerca de três anos.',
-                                   max_value: 200, deadline: 5.days.from_now, location: 'Presencial', abilities: [javascript], project_owner: caio})
+                                   max_value: 200, deadline: 5.days.from_now, location: 'local', abilities: [javascript], project_owner: caio})
         projeto_anderson = Project.create!({title: 'Projeto de Sistema do Anderson', description: 'Este projeto da Handa promete garantir qualidade de vida para muitos connect on Linked in. A Oestia, grupo que promove a intervenção da Handa no público, promoveu há cerca de três anos.',
-                                   max_value: 200, deadline: 6.days.from_now, location: 'Presencial', abilities: [javascript], project_owner: anderson})
+                                   max_value: 200, deadline: 6.days.from_now, location: 'local', abilities: [javascript], project_owner: anderson})
         
         freelancer = Freelancer.create!({email: 'teste@tester.com', password: '1234567'})
         profile_freelancer = freelancer.profile.update!({full_name: 'teste tester', social_name:'', birth_date: '1995-04-03', description:'Grande profissional da área de T.I. com mais de 10 anos de exp atuando em grandes empresas'})
@@ -50,9 +50,9 @@ describe 'p.o see proposals' do
               
 
         projeto_caio = Project.create!({title: 'Projeto de Sistema', description: 'Este projeto da Handa promete garantir qualidade de vida para muitos connect on Linked in. A Oestia, grupo que promove a intervenção da Handa no público, promoveu há cerca de três anos.',
-                                   max_value: 200, deadline: 5.days.from_now, location: 'Presencial', abilities: [javascript], project_owner: caio})
+                                   max_value: 200, deadline: 5.days.from_now, location: 'local', abilities: [javascript], project_owner: caio})
         projeto_anderson = Project.create!({title: 'Projeto de Sistema do Anderson', description: 'Este projeto da Handa promete garantir qualidade de vida para muitos connect on Linked in. A Oestia, grupo que promove a intervenção da Handa no público, promoveu há cerca de três anos.',
-                                   max_value: 200, deadline: 6.days.from_now, location: 'Presencial', abilities: [javascript], project_owner: anderson})
+                                   max_value: 200, deadline: 6.days.from_now, location: 'local', abilities: [javascript], project_owner: anderson})
         
         freelancer = Freelancer.create!({email: 'teste@tester.com', password: '1234567'})
         profile_freelancer = freelancer.profile.update!({full_name: 'teste tester', social_name:'teste tester', birth_date: '1995-04-03', description:'Grande profissional da área de T.I. com mais de 10 anos de exp atuando em grandes empresas'})

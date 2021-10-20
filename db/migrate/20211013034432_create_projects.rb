@@ -5,7 +5,6 @@ class CreateProjects < ActiveRecord::Migration[6.1]
       t.text :description
       t.integer :max_value
       t.date :deadline
-      t.string :location
 
       t.timestamps
     end
