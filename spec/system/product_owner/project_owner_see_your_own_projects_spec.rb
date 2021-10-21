@@ -17,9 +17,9 @@ describe 'project see you own projects' do
         click_on 'Meus Projetos'
 
         expect(page).to have_link('Projeto de Sistema')
-        expect(page).to have_content(5.days.from_now.to_date())
+        expect(page).to have_content(I18n.l(5.days.from_now.to_date()))
         expect(page).to_not have_link('Projeto de Sistema do Anderson')
-        expect(page).to_not have_content(6.days.from_now.to_date())
+        expect(page).to_not have_content(I18n.l(6.days.from_now.to_date()))
         expect(page).to_not have_content('Você não tem projetos cadastrados.')
         expect(page).to_not have_link('Clique aqui para criar o seu primeiro projeto!')
     end

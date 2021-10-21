@@ -29,8 +29,6 @@ Forma de trabalho: <%= Project.human_enum_name(:locations, @project.location) %>
       </div>
 <% end %>
 
-
-
 <% if freelancer_signed_in? && current_freelancer.projects.include?(@project)%>
    <div>
       Você já enviou proposta para este projeto, clique aqui, para ver ela.
