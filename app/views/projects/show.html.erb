@@ -13,14 +13,20 @@ Forma de trabalho: <%= Project.human_enum_name(:locations, @project.location) %>
    </div>
 <% elsif project_owner_signed_in? && @project.project_owner == current_project_owner %>
    <h3>Propostas:</h3>
-   <% @project.proposals.each do |proposal|%>
-      <li><%= proposal.freelancer.profile.full_name %></li>
-      <li>Valor por hora: <%= number_to_currency proposal.hour_value %></li>
-      <li>Previsão de entrega: <%= I18n.l(proposal.deadline_proposal) %>
-      <li><%= I18n.t(proposal.status) %></li>
-      <li id=<%=proposal.id%>><%= link_to 'Visualizar Proposta Completa', project_proposal_path(proposal.id) %>
-      <li><%= link_to 'Aceitar Proposta', accept_project_proposal_path(proposal.id), method: :post %></li>
-      <li><%= link_to 'Rejeitar Proposta', reject_project_proposal_path(proposal.id), method: :post %></li>
+   <% if @project.proposals.where(status: 'pending').empty? %>
+      <div>
+         Não existem propostas para serem avaliadas neste momento.
+      </div>
+   <% else %>
+      <% @project.proposals.where(status: 'pending').each do |proposal|%>
+         <li><%= proposal.freelancer.profile.full_name %></li>
+         <li>Valor por hora: <%= number_to_currency proposal.hour_value %></li>
+         <li>Previsão de entrega: <%= I18n.l(proposal.deadline_proposal) %>
+         <li><%= I18n.t(proposal.status) %></li>
+         <li id=<%= "proposal_#{proposal.id}" %>><%= link_to 'Visualizar Proposta Completa', project_proposal_path(proposal.id) %>
+         <li id=<%= "accept_proposal_#{proposal.id}" %>><%= link_to 'Aceitar Proposta', accept_project_proposal_path(proposal.id), method: :post %></li>
+         <li id=<%= "reject_proposal_#{proposal.id}" %>><%= link_to 'Rejeitar Proposta', reject_project_proposal_path(proposal.id), method: :post %></li>
+      <% end %>
    <% end %>
 <% else %>
    <%= form_with model: @proposal, url: project_proposals_path(@project) do |f|%>
