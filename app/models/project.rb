@@ -8,14 +8,15 @@ class Project < ApplicationRecord
     validates :title, :description, :max_value, :deadline, :location, presence: true
     validates :description, length: { minimum: 30 }
     validates :max_value, numericality: {greater_than: 0} 
-    validate :deadline_is_possible?
+    validate :deadline_is_possible? 
     validate :has_ability?
 
     enum location: {remotely: 5, local: 10}
+    enum project_application: {open: 5, closed: 10}
     
     def deadline_is_possible?
         return if deadline.blank?
-        if Date.current() > deadline
+        if (Date.current() > deadline)
             errors.add(:deadline, 'precisa maior ou igual a hoje')
         end
     end

@@ -1,15 +1,30 @@
 <h1>Meus Projetos</h1>
 
-<% if @projects.empty? %>
-    <div>
-        <h3>Você não tem projetos cadastrados.</h3><br>
-    </div>
-    <div>
-        <%= link_to 'Clique aqui para criar o seu primeiro projeto!', new_project_path %>
-    </div>
+<% if project_owner_signed_in? %>
+    <% if @projects.empty? %>
+        <div>
+            <h3>Você não tem projetos cadastrados.</h3><br>
+        </div>
+        <div>
+            <%= link_to 'Clique aqui para criar o seu primeiro projeto!', new_project_path %>
+        </div>
+    <% end %>
+<% elsif freelancer_signed_in? %>
+    <% if @proposals.empty? %>
+        <div>
+            <h3>Você ainda não tem propostas aceitas.</h3><br>
+        </div>
+    <% end %>
 <% end %>
 
-<% @projects.each do |project|%>
-    <li><%= link_to project.title, project %></li>
-    <li><%= project.deadline %></li>
+<% if project_owner_signed_in? %>
+    <% @projects.each do |project|%>
+        <li>Projeto: <%= link_to project.title, project %></li>
+        <li>Data Limite para Propostas: <%= I18n.l(project.deadline) %></li>
+    <% end %>
+<% elsif freelancer_signed_in? %>
+    <% @proposals.where(status: 'accepted').each do |proposal|%>
+        <li>Projeto: <%= link_to proposal.project.title, proposal.project %></li>
+        <li>Data Limite para Propostas: <%= I18n.l(proposal.project.deadline) %></li>
+    <% end %>
 <% end %>

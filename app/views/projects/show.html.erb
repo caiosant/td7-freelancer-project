@@ -7,6 +7,30 @@ Habilidade(s): <% @project.abilities.each do |ability| %>
              <% end %><br>
 Forma de trabalho: <%= Project.human_enum_name(:locations, @project.location) %><br>
 
+<% if project_owner_signed_in? && @project.project_owner == current_project_owner && @project.proposals.where(status: 'accepted').empty?%>
+         <div>
+            Time do Projeto:
+         </div>
+         <div>
+            Ainda não existem propostas aceitas
+         </div>
+<% elsif (project_owner_signed_in? && @project.project_owner == current_project_owner) || (freelancer_signed_in? && @project.proposals.where("status = ? AND freelancer_id = ?", "accepted", current_freelancer.id)) %>
+      <div>
+         <div>
+            Time do Projeto:
+         </div>
+         <div>
+            <% @project.proposals.where(status: 'accepted').each do |proposal| %>
+               <div>
+                  <%= link_to proposal.freelancer.profile.social_name, proposal.freelancer.profile %>
+               </div>
+            <% end %>
+         </div>
+      </div>
+<% end %>
+
+
+
 <% if freelancer_signed_in? && current_freelancer.projects.include?(@project)%>
    <div>
       Você já enviou proposta para este projeto, clique aqui, para ver ela.

@@ -8,6 +8,7 @@
             <nav>
                 <ul>
                     <%= link_to 'Projetos Disponíveis', projects_path %>
+                    <%= link_to 'Meus Projetos', my_projects_projects_path %>
                     <%= link_to 'Minhas Propostas', my_proposals_path %>
                     <%= link_to current_freelancer.email, profile_path(current_freelancer.profile.id) %>
                     <%= link_to 'Logout', destroy_freelancer_session_path, method: 'delete'%>

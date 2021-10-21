@@ -28,7 +28,11 @@ class ProjectsController < ApplicationController
     end
 
     def my_projects
-        @projects = current_project_owner.projects
+        if current_project_owner != nil
+            @projects = current_project_owner.projects
+        elsif current_freelancer != nil
+            @proposals = current_freelancer.proposals
+        end
     end
 
     def search
