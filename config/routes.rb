@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :proposals, only: [:show, :create] do
         post 'accept', on: :member
         post 'reject', on: :member
+        post 'cancel', on: :member
     end
   end
   

@@ -14,4 +14,7 @@
         <% end %>
     </p>
     <p>Status: <%= I18n.t(proposal.status) %>
+    <% if proposal.status != 'canceled'%>
+        <li id=<%= "cancel_proposal_#{proposal.id}" %>><%= link_to 'Cancelar Proposta', cancel_project_proposal_path(proposal.project.id, proposal.id), method: :post %></li>
+    <% end %>
 <% end %>
