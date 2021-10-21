@@ -4,6 +4,8 @@ pt-BR:
   accepted: 'Aceita'
   rejected: 'Rejeitada'
   canceled: 'Cancelada'
+  started: 'Aberto'
+  finished: 'Finalizado'
   activerecord:
     models:
       project: 'Projeto'
@@ -19,3 +21,4 @@ pt-BR:
         locations:
           remotely: 'Remoto'
           local: 'Presencial'
+

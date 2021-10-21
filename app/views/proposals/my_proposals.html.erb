@@ -7,14 +7,19 @@
 <% end %>
 
 <% @proposals.each do |proposal| %>
-    <h3><%= link_to proposal.project.title, proposal.project %></h3>
+    <h3>Projeto: <%= link_to proposal.project.title, proposal.project %></h3>
     <p>Habilidade(s): 
         <% proposal.project.abilities.each do |ability| %>
             <%= ability.name %>
         <% end %>
     </p>
     <p>Status: <%= I18n.t(proposal.status) %>
-    <% if proposal.status != 'canceled'%>
+    <div>
+        <%= link_to 'Visualizar Proposta', project_proposal_path(proposal.project.id, proposal.id) %>
+    </div>
+    <% if proposal.status == 'pending' %>
         <li id=<%= "cancel_proposal_#{proposal.id}" %>><%= link_to 'Cancelar Proposta', cancel_project_proposal_path(proposal.project.id, proposal.id), method: :post %></li>
+    <% elsif proposal.can_cancel? %>
+        <li id=<%= "cancel_proposal_#{proposal.id}" %>><%= link_to 'Cancelar Proposta', new_project_proposal_proposal_cancelation_path(proposal.project.id, proposal.id)%>
     <% end %>
 <% end %>

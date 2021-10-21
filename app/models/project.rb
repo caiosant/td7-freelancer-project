@@ -4,6 +4,7 @@ class Project < ApplicationRecord
     has_many :freelancers, through: :proposals
     has_many :project_abilities
     has_many :abilities, through: :project_abilities
+    has_many :project_cancelations, through: :proposals
 
     validates :title, :description, :max_value, :deadline, :location, presence: true
     validates :description, length: { minimum: 30 }
@@ -13,6 +14,7 @@ class Project < ApplicationRecord
 
     enum location: {remotely: 5, local: 10}
     enum project_application: {open: 5, closed: 10}
+    enum project_status: {started: 5, finished: 10}
     
     def deadline_is_possible?
         return if deadline.blank?

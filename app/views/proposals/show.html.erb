@@ -3,5 +3,7 @@
 <li>Quantidade de horas: <%= @proposal.hours%></li>
 <li>Motivação: <%= @proposal.application_reason%></li>
 <li><%= I18n.t(@proposal.status) %></li>
-<li><%= link_to 'Aceitar Proposta', accept_project_proposal_path(@proposal.id), method: :post %></li>
-<li><%= link_to 'Rejeitar Proposta', reject_project_proposal_path(@proposal.id), method: :post %></li>
+<% if project_owner_signed_in? && @proposal.project.project_owner == current_project_owner && @proposal.status == 'pending' %>
+    <li><%= link_to 'Aceitar Proposta', accept_project_proposal_path(@proposal.id), method: :post %></li>
+    <li><%= link_to 'Rejeitar Proposta', reject_project_proposal_path(@proposal.id), method: :post %></li>
+<% end %>

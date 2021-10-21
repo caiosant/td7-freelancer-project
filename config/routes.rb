@@ -5,17 +5,20 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   resources :projects, only: [:index, :new, :create, :show,] do
+    post 'finish', on: :member
+
     get 'my_projects', on: :collection
     resources :proposals, only: [:show, :create] do
         post 'accept', on: :member
         post 'reject', on: :member
         post 'cancel', on: :member
+
+        resources :proposal_cancelations, only: [:new, :create]
     end
   end
   
   get 'search', to: 'projects#search'
   get 'my_proposals', to:'proposals#my_proposals'
-  
 
   devise_for :project_owners, path: 'project_owners'
   devise_for :freelancers, path: 'freelancers'

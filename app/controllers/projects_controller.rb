@@ -35,6 +35,12 @@ class ProjectsController < ApplicationController
         end
     end
 
+    def finish
+        @project = Project.find(params[:id])
+        @project.finished!
+        redirect_to @project
+    end
+
     def search
         @projects = Project.where('title like ? OR description like ?', "%#{params[:q]}%", "%#{params[:q]}%")
     end

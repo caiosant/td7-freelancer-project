@@ -6,6 +6,7 @@ Habilidade(s): <% @project.abilities.each do |ability| %>
                 <%= ability.name %>
              <% end %><br>
 Forma de trabalho: <%= Project.human_enum_name(:locations, @project.location) %><br>
+Status do Projeto: <%= I18n.t(@project.project_status)%>
 
 <% if project_owner_signed_in? && @project.project_owner == current_project_owner && @project.proposals.where(status: 'accepted').empty?%>
          <div>
@@ -27,6 +28,10 @@ Forma de trabalho: <%= Project.human_enum_name(:locations, @project.location) %>
             <% end %>
          </div>
       </div>
+<% end %>
+
+<% if @project.project_status != 'finished'%>
+   <%= link_to 'Finalizar Projeto', finish_project_path, method: 'post' %>
 <% end %>
 
 <% if freelancer_signed_in? && current_freelancer.projects.include?(@project)%>

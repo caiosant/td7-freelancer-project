@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_21_010537) do
+ActiveRecord::Schema.define(version: 2021_10_21_221758) do
 
   create_table "abilities", force: :cascade do |t|
     t.string "name"
@@ -100,7 +100,18 @@ ActiveRecord::Schema.define(version: 2021_10_21_010537) do
     t.integer "project_owner_id", null: false
     t.integer "location"
     t.integer "project_application", default: 5
+    t.integer "project_status", default: 5
     t.index ["project_owner_id"], name: "index_projects_on_project_owner_id"
+  end
+
+  create_table "proposal_cancelations", force: :cascade do |t|
+    t.text "reason"
+    t.integer "proposal_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "project_id", null: false
+    t.index ["project_id"], name: "index_proposal_cancelations_on_project_id"
+    t.index ["proposal_id"], name: "index_proposal_cancelations_on_proposal_id"
   end
 
   create_table "proposals", force: :cascade do |t|
@@ -123,6 +134,8 @@ ActiveRecord::Schema.define(version: 2021_10_21_010537) do
   add_foreign_key "project_abilities", "abilities"
   add_foreign_key "project_abilities", "projects"
   add_foreign_key "projects", "project_owners"
+  add_foreign_key "proposal_cancelations", "projects"
+  add_foreign_key "proposal_cancelations", "proposals"
   add_foreign_key "proposals", "freelancers"
   add_foreign_key "proposals", "projects"
 end
