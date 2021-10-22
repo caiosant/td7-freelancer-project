@@ -6,7 +6,7 @@
 </div>
 
 <div>
-    <%= form_with(model: [@project, @proposal, @proposal_cancelation], url: project_proposal_proposal_cancelations_path(@project.id, @proposal.id, @proposal_cancelation)) do |f| %>
+    <%= form_with(model: @proposal_cancelation, url: project_proposal_proposal_cancelations_path(@project, @proposal, @proposal_cancelation)) do |f| %>
         <div>
             <%= f.label :reason %>
             <% @proposal_cancelation.errors.full_messages_for(:reason).each do |message| %>

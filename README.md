@@ -64,7 +64,7 @@ Para iniciar o servidor basta executar o comando ````rails s```` e acessar ````h
 - [ ] Marcar Freelancer como destaque;
 - [x] Encerrar inscrições para o projeto;
 - [x] Visualizar time;
-- [ ] Encerrar Projeto;
+- [x] Encerrar Projeto;
 - [ ] Feedback para os profissionais;
 ##### Freelancer
 - [x] Criação de conta;

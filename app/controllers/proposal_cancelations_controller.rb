@@ -8,6 +8,7 @@ class ProposalCancelationsController < ApplicationController
 
     def create
         @proposal_cancelation = ProposalCancelation.new(proposal_cancelation_params)
+        @proposal_cancelation.proposal = Proposal.find(params[:proposal_id])
         
         if @proposal_cancelation.save
             redirect_to my_proposals_path
@@ -19,6 +20,6 @@ class ProposalCancelationsController < ApplicationController
     private
 
     def proposal_cancelation_params
-        params.require(:proposal_cancelation).permit(:reason, :proposal_id, :project_id)
+        params.require(:proposal_cancelation).permit(:reason)
     end
 end

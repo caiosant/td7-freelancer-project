@@ -58,9 +58,9 @@ describe 'Freelancer try to cancel a proposal' do
         end
 
         expect(page).to have_content('Cancelar Proposta')
-        expect(page).to have_content('Propostas com aceitas necessitam de uma justificativa para o cancelamento.')
-        expect(page).to have_content('Justificativa:')
-        expect(page).to have_link('Enviar Cancelamento de Proposta')
+        expect(page).to have_content('Propostas aceitas necessitam de uma justificativa para o cancelamento.')
+        expect(page).to have_content('Justificativa')
+        expect(page).to have_button('Enviar Cancelamento de Proposta')
     end
 end
     

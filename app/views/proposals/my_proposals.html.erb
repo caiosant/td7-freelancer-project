@@ -19,7 +19,7 @@
     </div>
     <% if proposal.status == 'pending' %>
         <li id=<%= "cancel_proposal_#{proposal.id}" %>><%= link_to 'Cancelar Proposta', cancel_project_proposal_path(proposal.project.id, proposal.id), method: :post %></li>
-    <% elsif proposal.can_cancel? %>
+    <% elsif proposal.can_cancel? && proposal.status != 'canceled' %>
         <li id=<%= "cancel_proposal_#{proposal.id}" %>><%= link_to 'Cancelar Proposta', new_project_proposal_proposal_cancelation_path(proposal.project.id, proposal.id)%>
     <% end %>
 <% end %>

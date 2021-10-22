@@ -4,7 +4,7 @@ class Project < ApplicationRecord
     has_many :freelancers, through: :proposals
     has_many :project_abilities
     has_many :abilities, through: :project_abilities
-    has_many :project_cancelations, through: :proposals
+    has_many :project_cancelations, through: :proposal
 
     validates :title, :description, :max_value, :deadline, :location, presence: true
     validates :description, length: { minimum: 30 }

@@ -1,0 +1,8 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      proposal_cancelation: 'Cancelamento da Proposta'
+    attributes:
+      proposal_cancelation:
+        reason: 'Justificativa'
