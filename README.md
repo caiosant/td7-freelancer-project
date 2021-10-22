@@ -80,6 +80,6 @@ Para iniciar o servidor basta executar o comando ````rails s```` e acessar ````h
 - [x] Visualizar projetos disponíveis;
 - [x] Buscar projeto;
 - [x] Enviar proposta;
-- [ ] Cancelar proposta;
+- [x] Cancelar proposta;
 - [x] Visualizar time do projeto;
 - [ ] Feedback do projeto;

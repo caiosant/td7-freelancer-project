@@ -30,7 +30,7 @@ Status do Projeto: <%= I18n.t(@project.project_status)%>
       </div>
 <% end %>
 
-<% if @project.project_status != 'finished'%>
+<% if project_owner_signed_in? && @project.project_owner == current_project_owner && @project.project_status != 'finished'%>
    <%= link_to 'Finalizar Projeto', finish_project_path, method: 'post' %>
 <% end %>
 
