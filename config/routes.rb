@@ -23,5 +23,8 @@ Rails.application.routes.draw do
   devise_for :project_owners, path: 'project_owners'
   devise_for :freelancers, path: 'freelancers'
 
-  resources :profiles, only: [:show, :edit, :update]
+  resources :profiles, only: [:show, :edit, :update] do
+    resources :freelancers_favorites, only: [:create, :destroy]
+  end
+
 end

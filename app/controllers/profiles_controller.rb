@@ -27,10 +27,6 @@ class ProfilesController < ApplicationController
       params.require(:profile).permit(:full_name, :social_name, :birth_date, :description)
     end
 
-    
-
-private
-
     def authenticate_person!
         return if freelancer_signed_in? || project_owner_signed_in?
 

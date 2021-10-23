@@ -46,10 +46,10 @@ Status do Projeto: <%= I18n.t(@project.project_status)%>
       </div>
    <% else %>
       <% @project.proposals.where(status: 'pending').each do |proposal|%>
-         <li><%= proposal.freelancer.profile.full_name %></li>
+         <li>Freelancer: <%=link_to proposal.freelancer.profile.social_name, proposal.freelancer.profile %></li>
          <li>Valor por hora: <%= number_to_currency proposal.hour_value %></li>
          <li>Previsão de entrega: <%= I18n.l(proposal.deadline_proposal) %>
-         <li><%= I18n.t(proposal.status) %></li>
+         <li>Status da Proposta: <%= I18n.t(proposal.status) %></li>
          <li id=<%= "proposal_#{proposal.id}" %>><%= link_to 'Visualizar Proposta Completa', project_proposal_path(proposal.id) %>
          <li id=<%= "accept_proposal_#{proposal.id}" %>><%= link_to 'Aceitar Proposta', accept_project_proposal_path(proposal.id), method: :post %></li>
          <li id=<%= "reject_proposal_#{proposal.id}" %>><%= link_to 'Rejeitar Proposta', reject_project_proposal_path(proposal.id), method: :post %></li>

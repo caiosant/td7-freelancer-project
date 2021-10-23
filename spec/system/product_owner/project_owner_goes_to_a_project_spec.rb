@@ -33,6 +33,5 @@ describe 'project owner goes to a project' do
         
         expect(page).to have_content('Time do Projeto:')
         expect(page).to have_link('teste primeiro tester_social')
-        expect(page).to_not have_link('teste tester1_social')
     end
 end
