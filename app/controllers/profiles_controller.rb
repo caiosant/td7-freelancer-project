@@ -14,6 +14,10 @@ class ProfilesController < ApplicationController
     def update
         @profile = Profile.find(params[:id])
 
+        if params[:avatar].present?
+            @profile.avatar.attach(params[:avatar])
+        end
+
         if @profile.update(profile_params)
             redirect_to @profile
         else
@@ -24,7 +28,7 @@ class ProfilesController < ApplicationController
     private
 
     def profile_params
-      params.require(:profile).permit(:full_name, :social_name, :birth_date, :description)
+      params.require(:profile).permit(:full_name, :social_name, :birth_date, :description, :avatar)
     end
 
     def authenticate_person!

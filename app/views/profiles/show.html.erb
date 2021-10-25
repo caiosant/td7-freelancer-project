@@ -8,6 +8,12 @@
 <% end %>
 
 <div>
+    <% if @profile.avatar.present?%>
+        <%= image_tag @profile.avatar, alt: "avatar-profile" %>
+    <% end %>
+</div>
+
+<div>
 Nome Completo: <%= @profile.full_name %>
 
 </div>

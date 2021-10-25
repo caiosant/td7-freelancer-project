@@ -10,6 +10,7 @@ describe 'Freelancer goes to see his proposals' do
         fill_in 'Nome Social', with: 'Teste social'
         fill_in 'Descrição', with: 'Testando a descrição do perfil'
         fill_in 'Data de Nascimento', with: '03/04/1995'
+        attach_file 'Avatar', './app/assets/images/avatar_test.jpg'
         click_on 'Atualizar Perfil'
         click_on 'Minhas Propostas'
 

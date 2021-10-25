@@ -38,8 +38,10 @@ describe 'Freelancer try to navigate on the application' do
             fill_in 'Nome Social', with: 'Teste social'
             fill_in 'Descrição', with: 'Testando a descrição do perfil'
             fill_in 'Data de Nascimento', with: '03/04/1995'
+            attach_file 'Avatar', './app/assets/images/avatar_test.jpg'
             click_on 'Atualizar Perfil'
-
+            
+            expect(page).to have_css("img[alt=avatar-profile]")
             expect(page).to have_content('Meu Perfil')
             expect(page).to have_content('Nome Completo: Teste nome completo')
             expect(page).to have_content('Nome Social: Teste social')
