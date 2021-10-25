@@ -2,8 +2,9 @@ require 'rails_helper'
 
 describe 'Freelancer see all avaliable project' do
     it 'but doesnt have any' do
+        occupation_area = OccupationArea.create!({name: 'Desenvolvimento web'})
         freelancer = Freelancer.create!({email: 'teste@tester.com', password: '1234567'})
-        profile_freelancer = freelancer.profile.update!({full_name: 'teste tester', social_name:'', birth_date: '1995-04-03', description:'Grande profissional da área de T.I. com mais de 10 anos de exp atuando em grandes empresas'})
+        profile_freelancer = freelancer.profile.update!({full_name: 'teste tester', social_name:'', birth_date: '1995-04-03', occupation_area: occupation_area, description:'Grande profissional da área de T.I. com mais de 10 anos de exp atuando em grandes empresas'})
 
         login_as freelancer, scope: :freelancer
         visit root_path
@@ -20,8 +21,9 @@ describe 'Freelancer see all avaliable project' do
         projeto_po2 = Project.create!({title: 'Projeto de Sistema 2.0', description: 'Este projeto da Handa 2.0 promete garantir qualidade de vida para muitos connect on Linked in. A Oestia, grupo que promove a intervenção da Handa no público, promoveu há cerca de três anos.',
                                    max_value: 300, deadline: 3.days.from_now, location: 'remotely', abilities: [javascript], project_owner: project_owner})
 
+        occupation_area = OccupationArea.create!({name: 'Desenvolvimento web'})
         freelancer = Freelancer.create!({email: 'teste@tester.com', password: '1234567'})
-        profile_freelancer = freelancer.profile.update!({full_name: 'teste tester', social_name:'', birth_date: '1995-04-03', description:'Grande profissional da área de T.I. com mais de 10 anos de exp atuando em grandes empresas'})
+        profile_freelancer = freelancer.profile.update!({full_name: 'teste tester', social_name:'teste tester', birth_date: '1995-04-03', occupation_area: occupation_area, description:'Grande profissional da área de T.I. com mais de 10 anos de exp atuando em grandes empresas'})
 
         login_as freelancer, scope: :freelancer
         visit root_path
@@ -40,9 +42,10 @@ describe 'Freelancer see all avaliable project' do
         projeto_po2 = Project.create!({title: 'Projeto de Sistema 2.0', description: 'Este projeto da Handa 2.0 promete garantir qualidade de vida para muitos connect on Linked in. A Oestia, grupo que promove a intervenção da Handa no público, promoveu há cerca de três anos.',
                                    max_value: 300, deadline: 3.days.from_now, location: 'remotely', abilities: [javascript], project_owner: project_owner})
 
+        occupation_area = OccupationArea.create!({name: 'Desenvolvimento web'})
         freelancer = Freelancer.create!({email: 'teste@tester.com', password: '1234567'})
-        profile_freelancer = freelancer.profile.update!({full_name: 'teste tester', social_name:'', birth_date: '1995-04-03', description:'Grande profissional da área de T.I. com mais de 10 anos de exp atuando em grandes empresas'})
-
+        profile_freelancer = freelancer.profile.update!({full_name: 'teste tester', social_name:'teste tester', birth_date: '1995-04-03', occupation_area: occupation_area, description:'Grande profissional da área de T.I. com mais de 10 anos de exp atuando em grandes empresas'})
+                           
         login_as freelancer, scope: :freelancer
         visit root_path
         click_on 'Projetos Disponíveis'

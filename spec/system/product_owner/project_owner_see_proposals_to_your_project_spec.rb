@@ -12,11 +12,12 @@ describe 'p.o see proposals' do
         projeto_anderson = Project.create!({title: 'Projeto de Sistema do Anderson', description: 'Este projeto da Handa promete garantir qualidade de vida para muitos connect on Linked in. A Oestia, grupo que promove a intervenção da Handa no público, promoveu há cerca de três anos.',
                                    max_value: 200, deadline: 6.days.from_now, location: 'local', abilities: [javascript], project_owner: anderson})
         
+        occupation_area = OccupationArea.create!({name: 'Desenvolvimento web'})
         freelancer = Freelancer.create!({email: 'teste@tester.com', password: '1234567'})
-        profile_freelancer = freelancer.profile.update!({full_name: 'teste primeiro tester', social_name:'', birth_date: '1995-04-03', description:'Grande profissional da área de T.I. com mais de 10 anos de exp atuando em grandes empresas'})
+        profile_freelancer = freelancer.profile.update!({full_name: 'teste primeiro tester', social_name:'teste primeiro tester', birth_date: '1995-04-03', occupation_area: occupation_area, description:'Grande profissional da área de T.I. com mais de 10 anos de exp atuando em grandes empresas'})
 
         freelancer1 = Freelancer.create!({email: 'teste@tester1.com', password: '1234567'})
-        profile_freelancer1 = freelancer1.profile.update!({full_name: 'teste tester1', social_name:'', birth_date: '1995-04-04', description:'Grande profissional da área de T.I. com mais de 10 anos de exp atuando em grandes empresas1'})
+        profile_freelancer1 = freelancer1.profile.update!({full_name: 'teste tester1', social_name:'teste tester1', birth_date: '1995-04-04', occupation_area: occupation_area, description:'Grande profissional da área de T.I. com mais de 10 anos de exp atuando em grandes empresas1'})
         
         proposal1 = Proposal.create!({application_reason: 'Projeto dos meus sonhos, gostaria muito de trabalhar projeto caio', hour_value: 30, hours:30, deadline_proposal: 10.days.from_now, freelancer: freelancer, project: projeto_caio})
         proposal2 = Proposal.create!({application_reason: 'Projeto dos meus sonhos, gostaria muito de trabalhar projeto anderson', hour_value: 30, hours:30, deadline_proposal: 10.days.from_now, freelancer: freelancer, project: projeto_anderson})
@@ -53,11 +54,12 @@ describe 'p.o see proposals' do
         projeto_anderson = Project.create!({title: 'Projeto de Sistema do Anderson', description: 'Este projeto da Handa promete garantir qualidade de vida para muitos connect on Linked in. A Oestia, grupo que promove a intervenção da Handa no público, promoveu há cerca de três anos.',
                                    max_value: 200, deadline: 6.days.from_now, location: 'local', abilities: [javascript], project_owner: anderson})
         
+        occupation_area = OccupationArea.create!({name: 'Desenvolvimento web'})
         freelancer = Freelancer.create!({email: 'teste@tester.com', password: '1234567'})
-        profile_freelancer = freelancer.profile.update!({full_name: 'teste primeiro tester', social_name:'teste primeiro tester', birth_date: '1995-04-03', description:'Grande profissional da área de T.I. com mais de 10 anos de exp atuando em grandes empresas'})
+        profile_freelancer = freelancer.profile.update!({full_name: 'teste primeiro tester', social_name:'teste primeiro tester', birth_date: '1995-04-03', occupation_area: occupation_area, description:'Grande profissional da área de T.I. com mais de 10 anos de exp atuando em grandes empresas'})
 
         freelancer1 = Freelancer.create!({email: 'teste@tester1.com', password: '1234567'})
-        profile_freelancer1 = freelancer1.profile.update!({full_name: 'teste tester1', social_name:'teste tester', birth_date: '1995-04-04', description:'Grande profissional da área de T.I. com mais de 10 anos de exp atuando em grandes empresas1'})
+        profile_freelancer1 = freelancer1.profile.update!({full_name: 'teste tester1', social_name:'teste tester', birth_date: '1995-04-04', occupation_area: occupation_area, description:'Grande profissional da área de T.I. com mais de 10 anos de exp atuando em grandes empresas1'})
         
         proposal1 = Proposal.create!({application_reason: 'Projeto dos meus sonhos, gostaria muito de trabalhar projeto caio', hour_value: 30, hours:30, deadline_proposal: 10.days.from_now, freelancer: freelancer, project: projeto_caio})
         proposal2 = Proposal.create!({application_reason: 'Projeto dos meus sonhos, gostaria muito de trabalhar projeto anderson', hour_value: 30, hours:30, deadline_proposal: 10.days.from_now, freelancer: freelancer, project: projeto_anderson})
@@ -89,12 +91,13 @@ describe 'p.o see proposals' do
               
         projeto_caio = Project.create!({title: 'Projeto de Sistema', description: 'Este projeto da Handa promete garantir qualidade de vida para muitos connect on Linked in. A Oestia, grupo que promove a intervenção da Handa no público, promoveu há cerca de três anos.',
                                    max_value: 200, deadline: 5.days.from_now, location: 'local', abilities: [javascript], project_owner: caio})
-        
+
+        occupation_area = OccupationArea.create!({name: 'Desenvolvimento web'})
         freelancer = Freelancer.create!({email: 'teste@tester.com', password: '1234567'})
-        profile_freelancer = freelancer.profile.update!({full_name: 'teste tester', social_name:'teste tester', birth_date: '1995-04-03', description:'Grande profissional da área de T.I. com mais de 10 anos de exp atuando em grandes empresas'})
+        profile_freelancer = freelancer.profile.update!({full_name: 'teste tester', social_name:'teste tester', birth_date: '1995-04-03', occupation_area: occupation_area, description:'Grande profissional da área de T.I. com mais de 10 anos de exp atuando em grandes empresas'})
 
         freelancer1 = Freelancer.create!({email: 'teste@tester1.com', password: '1234567'})
-        profile_freelancer1 = freelancer1.profile.update!({full_name: 'teste tester1', social_name:'teste tester1', birth_date: '1995-04-04', description:'Grande profissional da área de T.I. com mais de 10 anos de exp atuando em grandes empresas1'})
+        profile_freelancer1 = freelancer1.profile.update!({full_name: 'teste tester1', social_name:'teste tester1', birth_date: '1995-04-04', occupation_area: occupation_area, description:'Grande profissional da área de T.I. com mais de 10 anos de exp atuando em grandes empresas1'})
         
         proposal1 = Proposal.create!({application_reason: 'Projeto dos meus sonhos, gostaria muito de trabalhar projeto caio', hour_value: 30, hours:30, deadline_proposal: 9.days.from_now, freelancer: freelancer, project: projeto_caio})
         proposal2 = Proposal.create!({application_reason: 'Projeto dos meus sonhos, gostaria muito de trabalhar projeto caio - by 1', hour_value: 40, hours:40, deadline_proposal: 10.days.from_now, freelancer: freelancer1, project: projeto_caio})
@@ -131,12 +134,14 @@ describe 'p.o see proposals' do
               
         projeto_caio = Project.create!({title: 'Projeto de Sistema', description: 'Este projeto da Handa promete garantir qualidade de vida para muitos connect on Linked in. A Oestia, grupo que promove a intervenção da Handa no público, promoveu há cerca de três anos.',
                                    max_value: 200, deadline: 5.days.from_now, location: 'local', abilities: [javascript], project_owner: caio})
-        
+
+
+        occupation_area = OccupationArea.create!({name: 'Desenvolvimento web'})
         freelancer = Freelancer.create!({email: 'teste@tester.com', password: '1234567'})
-        profile_freelancer = freelancer.profile.update!({full_name: 'teste tester', social_name:'teste tester', birth_date: '1995-04-03', description:'Grande profissional da área de T.I. com mais de 10 anos de exp atuando em grandes empresas'})
+        profile_freelancer = freelancer.profile.update!({full_name: 'teste tester', social_name:'teste tester', birth_date: '1995-04-03', occupation_area: occupation_area, description:'Grande profissional da área de T.I. com mais de 10 anos de exp atuando em grandes empresas'})
 
         freelancer1 = Freelancer.create!({email: 'teste@tester1.com', password: '1234567'})
-        profile_freelancer1 = freelancer1.profile.update!({full_name: 'teste tester1', social_name:'teste tester1', birth_date: '1995-04-04', description:'Grande profissional da área de T.I. com mais de 10 anos de exp atuando em grandes empresas1'})
+        profile_freelancer1 = freelancer1.profile.update!({full_name: 'teste tester1', social_name:'teste tester1', birth_date: '1995-04-04', occupation_area: occupation_area, description:'Grande profissional da área de T.I. com mais de 10 anos de exp atuando em grandes empresas1'})
         
         proposal1 = Proposal.create!({application_reason: 'Projeto dos meus sonhos, gostaria muito de trabalhar projeto caio', hour_value: 30, hours:30, deadline_proposal: 9.days.from_now, freelancer: freelancer, project: projeto_caio})
         proposal2 = Proposal.create!({application_reason: 'Projeto dos meus sonhos, gostaria muito de trabalhar projeto caio - by 1', hour_value: 40, hours:40, deadline_proposal: 10.days.from_now, freelancer: freelancer1, project: projeto_caio})

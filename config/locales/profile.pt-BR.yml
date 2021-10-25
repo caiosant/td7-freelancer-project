@@ -9,3 +9,4 @@ pt-BR:
         social_name: 'Nome Social'
         description: 'Descrição'
         birth_date: 'Data de Nascimento'
+        occupation_area: 'Área de Atuação'

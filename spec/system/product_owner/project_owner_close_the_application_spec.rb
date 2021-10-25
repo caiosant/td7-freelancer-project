@@ -10,8 +10,9 @@ describe 'project owner close the application,' do
                                    max_value: 200, deadline: 5.days.from_now, location: 'local', abilities: [javascript], project_owner: caio})
         projeto_caio2 = Project.create!({title: 'Projeto Sistema 2.0', description: 'Projeto do caio 2.0 adsadadadasdadadasdadadsaddadasdadadsada', max_value: 120, deadline: 2.days.from_now, location: 'remotely', abilities: [javascript], project_owner: caio})
         
+        occupation_area = OccupationArea.create!({name: 'Desenvolvimento web'})
         freelancer = Freelancer.create!({email: 'teste@tester.com', password: '1234567'})
-        profile_freelancer = freelancer.profile.update!({full_name: 'teste primeiro tester', social_name:'', birth_date: '1995-04-03', description:'Grande profissional da área de T.I. com mais de 10 anos de exp atuando em grandes empresas'})
+        profile_freelancer = freelancer.profile.update!({full_name: 'teste primeiro tester', social_name:'teste primeiro tester', birth_date: '1995-04-03', occupation_area: occupation_area, description:'Grande profissional da área de T.I. com mais de 10 anos de exp atuando em grandes empresas'})
         
         proposal = Proposal.create!({application_reason: 'Projeto dos meus sonhos, gostaria muito de trabalhar projeto caio', hour_value: 30, hours:30, deadline_proposal: 10.days.from_now, freelancer: freelancer, project: projeto_caio})
 
@@ -44,8 +45,9 @@ describe 'project owner close the application,' do
                                    max_value: 200, deadline: 5.days.from_now, location: 'local', abilities: [javascript], project_owner: caio})
         projeto_caio2 = Project.create!({title: 'Projeto Sistema 2.0', description: 'Projeto do caio 2.0 adsadadadasdadadasdadadsaddadasdadadsada', max_value: 120, deadline: 2.days.from_now, location: 'remotely', abilities: [javascript], project_owner: caio})
         
+        occupation_area = OccupationArea.create!({name: 'Desenvolvimento web'})
         freelancer = Freelancer.create!({email: 'teste@tester.com', password: '1234567'})
-        profile_freelancer = freelancer.profile.update!({full_name: 'teste primeiro tester', social_name:'', birth_date: '1995-04-03', description:'Grande profissional da área de T.I. com mais de 10 anos de exp atuando em grandes empresas'})
+        profile_freelancer = freelancer.profile.update!({full_name: 'teste primeiro tester', social_name:'teste primeiro tester', birth_date: '1995-04-03', occupation_area: occupation_area, description:'Grande profissional da área de T.I. com mais de 10 anos de exp atuando em grandes empresas'})
         
         proposal = Proposal.create!({application_reason: 'Projeto dos meus sonhos, gostaria muito de trabalhar projeto caio', hour_value: 30, hours:30, deadline_proposal: 10.days.from_now, freelancer: freelancer, project: projeto_caio})
         proposal1 = Proposal.create!({application_reason: 'Projeto dos meus sonhos, gostaria muito de trabalhar projeto caio', hour_value: 30, hours:30, deadline_proposal: 10.days.from_now, freelancer: freelancer, project: projeto_caio2})

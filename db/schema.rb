@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_22_191346) do
+ActiveRecord::Schema.define(version: 2021_10_25_060136) do
 
   create_table "abilities", force: :cascade do |t|
     t.string "name"
@@ -67,6 +67,12 @@ ActiveRecord::Schema.define(version: 2021_10_22_191346) do
     t.index ["reset_password_token"], name: "index_freelancers_on_reset_password_token", unique: true
   end
 
+  create_table "occupation_areas", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.string "full_name"
     t.string "social_name"
@@ -75,7 +81,9 @@ ActiveRecord::Schema.define(version: 2021_10_22_191346) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "freelancer_id", null: false
+    t.integer "occupation_area_id"
     t.index ["freelancer_id"], name: "index_profiles_on_freelancer_id"
+    t.index ["occupation_area_id"], name: "index_profiles_on_occupation_area_id"
   end
 
   create_table "project_abilities", force: :cascade do |t|
@@ -140,6 +148,7 @@ ActiveRecord::Schema.define(version: 2021_10_22_191346) do
   add_foreign_key "freelancer_favorites", "freelancers"
   add_foreign_key "freelancer_favorites", "project_owners"
   add_foreign_key "profiles", "freelancers"
+  add_foreign_key "profiles", "occupation_areas"
   add_foreign_key "project_abilities", "abilities"
   add_foreign_key "project_abilities", "projects"
   add_foreign_key "projects", "project_owners"

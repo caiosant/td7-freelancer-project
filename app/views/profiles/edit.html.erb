@@ -30,6 +30,13 @@
     <%= f.date_field :birth_date %>
   </div>
   <div>
+    <%= f.label :occupation_area_id, 'Área de Atuação' %>
+    <% @profile.errors.full_messages_for(:occupation_area).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+        <%= f.collection_select :occupation_area_id, @occupation_area, :id, :name, {:prompt => 'Selecione uma área de atuação'} %>
+  </div>
+  <div>
     <%= f.label :avatar %>
     <%= f.file_field :avatar %>
     <% @profile.errors.full_messages_for(:avatar).each do |message| %>

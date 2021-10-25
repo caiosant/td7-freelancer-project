@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-    before_action :completed_profile?, except: [:edit, :update]
+    before_action :completed_profile?, except: [:create, :edit, :update]
     before_action :authenticate_person!, only: [:show]
     before_action :authenticate_freelancer!, except: [:show]
 
@@ -9,10 +9,12 @@ class ProfilesController < ApplicationController
 
     def edit
         @profile = Profile.find(params[:id])
+        @occupation_area = OccupationArea.all
     end
 
     def update
         @profile = Profile.find(params[:id])
+        @occupation_area = OccupationArea.all
 
         if params[:avatar].present?
             @profile.avatar.attach(params[:avatar])
@@ -28,7 +30,7 @@ class ProfilesController < ApplicationController
     private
 
     def profile_params
-      params.require(:profile).permit(:full_name, :social_name, :birth_date, :description, :avatar)
+      params.require(:profile).permit(:full_name, :social_name, :birth_date, :description, :occupation_area_id, :avatar)
     end
 
     def authenticate_person!

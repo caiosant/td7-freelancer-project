@@ -9,6 +9,7 @@ class Freelancer < ApplicationRecord
   has_many :freelancer_favorites
   has_many :projects_owners, through: :freelancer_favorites
   has_one :profile
+  has_many :occupation_areas, through: :profile
 
   after_create :create_profile
 

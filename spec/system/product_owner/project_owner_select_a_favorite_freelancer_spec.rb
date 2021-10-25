@@ -4,8 +4,9 @@ describe 'Project Owner select a freelancer as a favorite' do
     it 'and got successfully' do
         caio = ProjectOwner.create!({email: 'caio@gmail.com', password: '12345678'})
 
+        occupation_area = OccupationArea.create!({name: 'Desenvolvimento web'})
         freelancer = Freelancer.create!({email: 'teste@tester.com', password: '1234567'})
-        profile_freelancer = freelancer.profile.update!({full_name: 'Caio Free', social_name:'Caio Free', birth_date: '1995-04-03', description:'Grande profissional da área de T.I. com mais de 10 anos de exp atuando em grandes empresas'})
+        profile_freelancer = freelancer.profile.update!({full_name: 'Caio Free', social_name:'Caio Free', birth_date: '1995-04-03', occupation_area: occupation_area, description:'Grande profissional da área de T.I. com mais de 10 anos de exp atuando em grandes empresas'})
 
         javascript = Ability.create!({name: 'Javascript'})
         projeto_caio = Project.create!({title: 'Projeto de Sistema', description: 'Este projeto da Handa promete garantir qualidade de vida para muitos connect on Linked in. A Oestia, grupo que promove a intervenção da Handa no público, promoveu há cerca de três anos.',

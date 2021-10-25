@@ -75,7 +75,7 @@ Para iniciar o servidor basta executar o comando ````rails s```` e acessar ````h
     - [x] Descrição;
     - [ ] Experiência;
     - [x] Avatar;
-    - [ ] Área de atuação
+    - [x] Área de atuação
 - [x] Atualizar Perfil (Obrigatório);
 - [x] Visualizar projetos disponíveis;
 - [x] Buscar projeto;
