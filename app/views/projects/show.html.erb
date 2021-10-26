@@ -24,6 +24,9 @@ Status do Projeto: <%= I18n.t(@project.project_status)%>
             <% @project.proposals.where(status: 'accepted').each do |proposal| %>
                <div>
                   <%= link_to proposal.freelancer.profile.social_name, proposal.freelancer.profile %>
+                  <% if (project_owner_signed_in? && @project.project_owner == current_project_owner && @project.project_status == 'finished') %>
+                     <%= link_to 'Realizar Feedback', new_project_freelancer_freelancer_feedback_path(@project.id, proposal.freelancer.id) %>
+                  <% end %>
                </div>
             <% end %>
          </div>

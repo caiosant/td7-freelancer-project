@@ -10,6 +10,8 @@ class Freelancer < ApplicationRecord
   has_many :projects_owners, through: :freelancer_favorites
   has_one :profile
   has_many :occupation_areas, through: :profile
+  has_many :freelancer_feedbacks
+  has_many :projects, through: :freelancer_feedbacks
 
   after_create :create_profile
 

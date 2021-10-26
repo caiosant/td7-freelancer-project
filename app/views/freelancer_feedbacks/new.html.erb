@@ -1,0 +1,17 @@
+<%= form_with model: @freelancer_feedback, url: project_freelancer_freelancer_feedbacks_path(@project.id, @freelancer.id) do |f|%>
+    <div>
+        <%= f.label :grade %>
+        <% @freelancer_feedback.errors.full_messages_for(:grade).each do |message| %>
+            <div><%= message %></div>
+        <% end %>
+        <%= f.number_field :grade%>
+    </div>
+    <div>
+        <%= f.label :coment %>
+        <% @freelancer_feedback.errors.full_messages_for(:coment).each do |message| %>
+            <div><%= message %></div>
+        <% end %>
+        <%= f.text_field :coment%>
+    </div>
+    <%= f.submit 'Enviar Feedback' %>
+<% end %>

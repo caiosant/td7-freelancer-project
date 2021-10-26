@@ -1,0 +1,9 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      freelancer_feedback: 'Feedback para o Freelancer'
+    attributes:
+      freelancer_feedback:
+        grade: 'Nota'
+        coment: 'Comentário'

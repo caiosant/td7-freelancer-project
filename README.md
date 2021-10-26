@@ -47,11 +47,26 @@ Desta forma será possível garantir que não ocorreu nenhuma quebra na execuç�
   bin/webpack
   ````
   * Configuração do banco de dados
-Antes de iniciar o projeto é necessário executar o comando ````rails db:mmigrate````, para que as migrations sejam rodadas na sua máqui.
-
+Antes de iniciar o projeto é necessário executar o comando ````rails db:mmigrate````, para que as migrations sejam rodadas na sua máquina.
   * Iniciar o servidor e acessar aplicação:<br>
 Para iniciar o servidor basta executar o comando ````rails s```` e acessar ````http://localhost:3000````
 
+## Acessos:
+Com a execução dos comandos de bancos de dados, foram criados informações no banco de dados para que seja possível uma rápida utilização.
+
+#### Login Project Owner (Quero oferecer Projetos):
+Usuário: projectowner1@gmail.com
+Senha: 123456
+
+Usuário: projectowner2@gmail.com
+Senha: 123456
+
+#### Login Project Owner (Quero entrar em Projetos):
+Usuário: freelancer@gmail.com
+Senha: 123456
+
+Usuário: freelancer2@gmail.com
+Senha: 123456
 --- 
 ## Features:
 
