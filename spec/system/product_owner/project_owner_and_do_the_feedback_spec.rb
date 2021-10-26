@@ -48,10 +48,10 @@ describe 'project owner do the feedback' do
         click_on 'Finalizar Projeto'
         click_on 'Realizar Feedback'
         fill_in 'Nota', with: '4'
-        fill_in 'Nome do Projeto', with: 'Projeto de Sistema'
+        fill_in 'Comentário', with: 'Profissional muito bom! Espero que possamos trabalhar em novas projetos juntos! Obrigado por tudo!'
+        click_on 'Enviar Feedback'
         
-        expect(page).to have_content('Nota')
-        expect(page).to have_content('Comentário')
-        expect(page).to have_button('Enviar Feedback')
+        expect(page).to have_content('teste primeiro tester_social')
+        expect(page).to have_content('Feedback já realizado')
     end
 end

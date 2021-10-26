@@ -31,6 +31,6 @@ describe 'project owner finish the project' do
         expect(page).to have_content('Finalizado')
         expect(page).to have_content('Time do Projeto:')
         expect(page).to have_link('teste primeiro tester_social')
-        expect(page).to have_link('Fornecer feedback para: teste primeiro tester_social')
+        expect(page).to have_link('Realizar Feedback')
     end
 end
