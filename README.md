@@ -32,7 +32,7 @@ A gem Devise foi escolhia para realizar o processo de autenticação, visando tr
 de ser uma gem que facilita diversos processos de uma forma segura e esta em constantes atualizações.
 
 ## Testes
-Os testes podem ser encontramos dentro da pasta ````/spec/`````contida dentro do projeto. Caso deseje realizar alguma alteração no código é recomendando rodar o comando:
+Os testes podem ser encontramos dentro da pasta `````/spec/`````contida dentro do projeto. Caso deseje realizar alguma alteração no código é recomendando rodar o comando:
 ````rspec````
 
 Desta forma será possível garantir que não ocorreu nenhuma quebra na execução do projeto.
@@ -67,6 +67,7 @@ Senha: 123456
 
 Usuário: freelancer2@gmail.com
 Senha: 123456
+
 --- 
 ## Features:
 
