@@ -25,6 +25,15 @@ class Project < ApplicationRecord
         end
     end
 
+    def self.my_project?(project, project_owner)
+        return false if project_owner.blank?
+        if project.project_owner_id == project_owner.id
+            true
+        else
+            false
+        end
+    end
+
     def has_ability?
         if abilities.blank?
             errors.add(:abilities, 'precisa ter ao mínimo uma opção selecionada')

@@ -8,8 +8,12 @@ class ProjectsController < ApplicationController
     end
 
     def show
-        @project = Project.find(params[:id])
-        @proposal = Proposal.new()
+        if Project.my_project?(Project.find(params[:id]), current_project_owner) || current_freelancer != nil
+            @project = Project.find(params[:id])
+            @proposal = Proposal.new()
+        else
+            redirect_to root_path
+        end
     end
     
     def new
@@ -36,9 +40,11 @@ class ProjectsController < ApplicationController
     end
 
     def finish
-        @project = Project.find(params[:id])
-        @project.finished!
-        redirect_to @project
+        if Project.my_project?(Project.find(params[:id]), current_project_owner)
+            @project = Project.find(params[:id])
+            @project.finished!
+            redirect_to @project
+        end
     end
 
     def search

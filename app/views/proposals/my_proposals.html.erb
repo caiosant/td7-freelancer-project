@@ -13,13 +13,13 @@
             <%= ability.name %>
         <% end %>
     </p>
-    <p>Status: <%= I18n.t(proposal.status) %>
+    <p>Status: <%= I18n.t(proposal.proposal_status) %>
     <div>
         <%= link_to 'Visualizar Proposta', project_proposal_path(proposal.project.id, proposal.id) %>
     </div>
-    <% if proposal.status == 'pending' %>
+    <% if proposal.proposal_status == 'pending' %>
         <li id=<%= "cancel_proposal_#{proposal.id}" %>><%= link_to 'Cancelar Proposta', cancel_project_proposal_path(proposal.project.id, proposal.id), method: :post %></li>
-    <% elsif proposal.can_cancel? && proposal.status != 'canceled' %>
+    <% elsif proposal.can_cancel? && proposal.proposal_status != 'canceled' %>
         <li id=<%= "cancel_proposal_#{proposal.id}" %>><%= link_to 'Cancelar Proposta', new_project_proposal_proposal_cancelation_path(proposal.project.id, proposal.id)%>
     <% end %>
 <% end %>

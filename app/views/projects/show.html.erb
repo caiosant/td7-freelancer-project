@@ -8,20 +8,20 @@ Habilidade(s): <% @project.abilities.each do |ability| %>
 Forma de trabalho: <%= Project.human_enum_name(:locations, @project.location) %><br>
 Status do Projeto: <%= I18n.t(@project.project_status)%>
 
-<% if project_owner_signed_in? && @project.project_owner == current_project_owner && @project.proposals.where(status: 'accepted').empty?%>
+<% if project_owner_signed_in? && @project.project_owner == current_project_owner && @project.proposals.where(proposal_status: 'accepted').empty?%>
          <div>
             Time do Projeto:
          </div>
          <div>
             Ainda não existem propostas aceitas
          </div>
-<% elsif (project_owner_signed_in? && @project.project_owner == current_project_owner) || (freelancer_signed_in? && @project.proposals.where("status = ? AND freelancer_id = ?", "accepted", current_freelancer.id)) %>
+<% elsif (project_owner_signed_in? && @project.project_owner == current_project_owner) || (freelancer_signed_in? && @project.proposals.where("proposal_status = ? AND freelancer_id = ?", "accepted", current_freelancer.id)) %>
       <div>
          <div>
             Time do Projeto:
          </div>
          <div>
-            <% @project.proposals.where(status: 'accepted').each do |proposal| %>
+            <% @project.proposals.where(proposal_status: 'accepted').each do |proposal| %>
                <div>
                   <%= link_to proposal.freelancer.profile.social_name, proposal.freelancer.profile %>
                   <% if (project_owner_signed_in? && @project.project_owner == current_project_owner && @project.project_status == 'finished' && @project.freelancer_feedbacks.where('freelancer_id = ?', proposal.freelancer.id).present?) %>
@@ -47,16 +47,16 @@ Status do Projeto: <%= I18n.t(@project.project_status)%>
    </div>
 <% elsif project_owner_signed_in? && @project.project_owner == current_project_owner %>
    <h3>Propostas:</h3>
-   <% if @project.proposals.where(status: 'pending').empty? %>
+   <% if @project.proposals.where(proposal_status: 'pending').empty? %>
       <div>
          Não existem propostas para serem avaliadas neste momento.
       </div>
    <% else %>
-      <% @project.proposals.where(status: 'pending').each do |proposal|%>
+      <% @project.proposals.where(proposal_status: 'pending').each do |proposal|%>
          <li>Freelancer: <%=link_to proposal.freelancer.profile.social_name, proposal.freelancer.profile %></li>
          <li>Valor por hora: <%= number_to_currency proposal.hour_value %></li>
          <li>Previsão de entrega: <%= I18n.l(proposal.deadline_proposal) %>
-         <li>Status da Proposta: <%= I18n.t(proposal.status) %></li>
+         <li>Status da Proposta: <%= I18n.t(proposal.proposal_status) %></li>
          <li id=<%= "proposal_#{proposal.id}" %>><%= link_to 'Visualizar Proposta Completa', project_proposal_path(proposal.id) %>
          <li id=<%= "accept_proposal_#{proposal.id}" %>><%= link_to 'Aceitar Proposta', accept_project_proposal_path(proposal.id), method: :post %></li>
          <li id=<%= "reject_proposal_#{proposal.id}" %>><%= link_to 'Rejeitar Proposta', reject_project_proposal_path(proposal.id), method: :post %></li>

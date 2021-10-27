@@ -3,13 +3,13 @@ class Proposal < ApplicationRecord
   belongs_to :freelancer
   has_one :proposal_cancelation
 
-  enum status:{pending: 5, accepted: 10, rejected: 20, canceled: 25}
+  enum proposal_status:{pending: 5, accepted: 10, rejected: 20, canceled: 25}
   
 
   def can_cancel?
-    if status == 'accepted' && (Date.today - updated_at.to_date).to_i > 2
+    if proposal_status == 'accepted' && (Date.today - updated_at.to_date).to_i > 2
       false
-    elsif status == 'accepted' && (Date.today - updated_at.to_date).to_i < 3
+    elsif proposal_status == 'accepted' && (Date.today - updated_at.to_date).to_i < 3
       true
     else
       true

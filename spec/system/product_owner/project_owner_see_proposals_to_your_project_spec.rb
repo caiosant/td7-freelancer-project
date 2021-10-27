@@ -79,7 +79,7 @@ describe 'p.o see proposals' do
         expect(page).to have_content('Valor por Hora: R$ 30,00')
         expect(page).to have_content('Quantidade de horas: 30')
         expect(page).to have_content('Motivação: Projeto dos meus sonhos, gostaria muito de trabalhar projeto caio')
-        expect(page).to have_content(I18n.t(proposal1.status))
+        expect(page).to have_content(I18n.t(proposal1.proposal_status))
         expect(page).to have_link('teste primeiro tester')
         expect(page).to have_link('Aceitar Proposta')
         expect(page).to have_link('Rejeitar Proposta')

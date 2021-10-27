@@ -23,7 +23,7 @@
         <li>Data Limite para Propostas: <%= I18n.l(project.deadline) %></li>
     <% end %>
 <% elsif freelancer_signed_in? %>
-    <% @proposals.where(status: 'accepted').each do |proposal|%>
+    <% @proposals.where(proposal_status: 'accepted').each do |proposal|%>
         <li>Projeto: <%= link_to proposal.project.title, proposal.project %></li>
         <li>Data Limite para Propostas: <%= I18n.l(proposal.project.deadline) %></li>
     <% end %>

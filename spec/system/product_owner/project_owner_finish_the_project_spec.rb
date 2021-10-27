@@ -1,6 +1,29 @@
 require 'rails_helper'
 
 describe 'project owner finish the project' do
+    it 'and must be signed in' do
+        caio = ProjectOwner.create!({email: 'caio@gmail.com', password: '12345678'})
+        javascript = Ability.create!({name: 'Javascript'})
+              
+
+        projeto_caio = Project.create!({title: 'Projeto de Sistema', description: 'Este projeto da Handa promete garantir qualidade de vida para muitos connect on Linked in. A Oestia, grupo que promove a intervenção da Handa no público, promoveu há cerca de três anos.',
+                                        max_value: 200, deadline: 5.days.from_now, location: 'local', abilities: [javascript], project_owner: caio})
+
+        visit project_path(projeto_caio)
+
+        expect(page).to_not have_content('Projeto de Sistema')
+        expect(page).to_not have_content('Descrição: Este projeto da Handa promete garantir qualidade de vida para muitos connect on Linked in. A Oestia, grupo que promove a intervenção da Handa no público, promoveu há cerca de três anos.')
+        expect(page).to_not have_content('Valor Máximo por Hora: R$ 200,00')
+        expect(page).to_not have_content("Data Limite para Propostas: #{I18n.l(projeto_caio.deadline)}")
+        expect(page).to_not have_content('Javascript')
+        expect(page).to_not have_content('Forma de trabalho: Presencial')
+        expect(page).to_not have_content('Finalizado')
+        expect(page).to_not have_content('Time do Projeto:')
+        expect(page).to_not have_link('teste primeiro tester_social')
+        expect(page).to_not have_link('Realizar Feedback')
+    end
+
+
     it 'and got successfully' do
         caio = ProjectOwner.create!({email: 'caio@gmail.com', password: '12345678'})
         javascript = Ability.create!({name: 'Javascript'})

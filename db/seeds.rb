@@ -22,7 +22,7 @@ project_owner2 = ProjectOwner.create!({email: 'projectowner2@gmail.com', passwor
 project1 = Project.create!({title: 'Projeto de desenvolvimento web', description:'Projeto focado no desenvolvimento de uma plataforma web para um colégio',
                             max_value: 200, deadline: 3.days.from_now, abilities: [habilidade2, habilidade3, habilidade7], project_owner: project_owner1, location: 'remotely'})
 project2 = Project.create!({title: 'Atualização de Plafatorma antiga', description:'Projeto focado em atualizar a plataforma da minha empresa',
-                            max_value: 100, deadline: 5.days.from_now, abilities: [habilidade2, habilidade3, habilidade7, habilidade8], project_owner: project_owner1, location: 'remotely'})
+                            max_value: 100, deadline: 5.days.from_now, abilities: [habilidade2, habilidade3, habilidade7, habilidade8], project_owner: project_owner2, location: 'remotely'})
 
 # Criando os Freelancers:
 freelancer1 = Freelancer.create!({email: 'freelancer@gmail.com', password: '123456'})

@@ -1,4 +1,5 @@
 class ProposalsController < ApplicationController
+    before_action :authenticate_person!
     before_action :completed_profile?
 
     def show
@@ -41,5 +42,11 @@ class ProposalsController < ApplicationController
 
     def proposal_params
         params.require(:proposal).permit(:application_reason, :hour_value, :hours, :deadline_proposal)
+    end
+
+    def authenticate_person!
+        return if freelancer_signed_in? || project_owner_signed_in?
+
+        redirect_to root_path
     end
 end
