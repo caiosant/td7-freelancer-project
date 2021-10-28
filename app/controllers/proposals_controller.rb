@@ -26,6 +26,8 @@ class ProposalsController < ApplicationController
         if @proposal.project.project_owner == current_project_owner
             @proposal.accepted!
             redirect_to @proposal.project
+        else
+            redirect_to root_path
         end
     end
 
@@ -35,6 +37,8 @@ class ProposalsController < ApplicationController
         if @proposal.project.project_owner == current_project_owner
             @proposal.rejected!
             redirect_to @proposal.project
+        else
+            redirect_to root_path
         end
     end
 
@@ -44,6 +48,8 @@ class ProposalsController < ApplicationController
         if @proposal.freelancer == current_freelancer
             @proposal.canceled!
             redirect_to my_proposals_path
+        else
+            redirect_to root_path
         end
     end
 
