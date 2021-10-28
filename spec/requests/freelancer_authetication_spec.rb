@@ -1,18 +1,17 @@
 require 'rails_helper'
 
-describe 'Property Owner authentication' do
-    context 'project' do
+describe 'Freelancer authentication' do
+    context 'proposal' do
         context 'need to be singed in' do
-            it 'cannot open new project form unless authenticated' do
-                get new_project_path
+            it 'cannot create a proposal form unless authenticated' do
+                caio = ProjectOwner.create!({email: 'caio@gmail.com', password: '12345678'})
+                javascript = Ability.create!({name: 'Javascript'})
+                projeto_caio = Project.create!({title: 'Projeto de Sistema', description: 'Este projeto da Handa promete garantir qualidade de vida para muitos connect on Linked in. A Oestia, grupo que promove a intervenção da Handa no público, promoveu há cerca de três anos.',
+                max_value: 200, deadline: 5.days.from_now, location: 'local', abilities: [javascript], project_owner: caio})
 
-                expect(response).to redirect_to(new_project_owner_session_path)
-            end
+                post "/projects/#{projeto_caio.id}/proposals"
 
-            it 'cannot create property without login' do
-                post projects_path
-
-                expect(response).to redirect_to(new_project_owner_session_path)
+                expect(response).to redirect_to(root_path)
             end
 
             it 'cannot accept a proposal' do

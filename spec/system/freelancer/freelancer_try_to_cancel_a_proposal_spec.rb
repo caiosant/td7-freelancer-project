@@ -14,7 +14,6 @@ describe 'Freelancer try to cancel a proposal' do
         proposal = Proposal.create!({application_reason: 'Projeto dos meus sonhos, gostaria muito de trabalhar nele', hour_value: 30, hours:30, freelancer: freelancer, project: projeto_po})
         
         login_as freelancer, scope: :freelancer
-
         visit root_path
         click_on 'Minhas Propostas'
         within "li#cancel_proposal_#{proposal.id}" do

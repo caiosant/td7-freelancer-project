@@ -22,20 +22,29 @@ class ProposalsController < ApplicationController
 
     def accept
         @proposal = Proposal.find(params[:id])
-        @proposal.accepted!
-        redirect_to @proposal.project
+
+        if @proposal.project.project_owner == current_project_owner
+            @proposal.accepted!
+            redirect_to @proposal.project
+        end
     end
 
     def reject
         @proposal = Proposal.find(params[:id])
-        @proposal.rejected!
-        redirect_to @proposal.project
+
+        if @proposal.project.project_owner == current_project_owner
+            @proposal.rejected!
+            redirect_to @proposal.project
+        end
     end
 
     def cancel
         @proposal = Proposal.find(params[:id])
-        @proposal.canceled!
-        redirect_to my_proposals_path
+
+        if @proposal.freelancer == current_freelancer
+            @proposal.canceled!
+            redirect_to my_proposals_path
+        end
     end
 
     private
