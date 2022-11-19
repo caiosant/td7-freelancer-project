@@ -1,27 +1,25 @@
-<header>
-    <div class='logo'>
-        <h1><%= link_to 'TD7-Freelancers', root_path %></h1>
-    </div>
+<header class='bg-dark text-light d-flex flex-wrap'>
+    <%= link_to root_path do %>
+        <%= image_tag "td7-freelancer-logo.png", width: "17%", class:"mt-2 ms-3 mf-4"%>
+    <% end %>
     
     <% if freelancer_signed_in? %>
-        <div class='menu'>
-            <nav>
-                <ul>
-                    <%= link_to 'Projetos Disponíveis', projects_path %>
-                    <%= link_to 'Meus Projetos', my_projects_projects_path %>
-                    <%= link_to 'Minhas Propostas', my_proposals_path %>
-                    <%= link_to current_freelancer.email, profile_path(current_freelancer.profile.id) %>
-                    <%= link_to 'Logout', destroy_freelancer_session_path, method: 'delete'%>
-                </ul>
-            </nav>
-        </div>
+        <nav>
+            <ul class='list-inline d-flex flex-wrap' style='gap: 1rem'>
+                <li><%= link_to 'Projetos Disponíveis', projects_path %></li>
+                <li><%= link_to 'Meus Projetos', my_projects_projects_path %></li>
+                <li><%= link_to 'Minhas Propostas', my_proposals_path %></li>
+                <li><%= link_to current_freelancer.email, profile_path(current_freelancer.profile.id) %></li>
+                <li><%= link_to 'Logout', destroy_freelancer_session_path, method: 'delete'%></li>
+            </ul>
+        </nav>
     <% elsif project_owner_signed_in?  %>
         <div class='menu'>
             <nav>
                 <ul>
                     <li> <%= link_to 'Cadastrar Projeto', new_project_path %> </li>
                     <li> <%= link_to 'Meus Projetos', my_projects_projects_path %> </li>
-                    <li> <%= current_project_owner.email %> </li>
+                    <li> Usuário: <%= current_project_owner.email %> </li>
                     <li> <%= link_to 'Logout', destroy_project_owner_session_path, method: 'delete'%> </li>
                 </ul>
             </nav>
@@ -34,6 +32,9 @@
         <%= notice %>
     </div>
 <% end %>
+
+<% if alert %>
     <div class="alert alert-warning" role="alert">
         <%= alert %>
     </div>
+<% end %>
