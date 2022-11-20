@@ -1,4 +1,4 @@
-# fly.toml file generated for td7-freelancer-project on 2022-11-19T13:08:15-03:00
+# fly.toml file generated for td7-freelancer-project on 2022-11-20T10:00:06-03:00
 
 app = "td7-freelancer-project"
 kill_signal = "SIGINT"
