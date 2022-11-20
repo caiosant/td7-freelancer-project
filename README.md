@@ -1,5 +1,8 @@
 # TD7-Freelancers
 
+##  Deploy
+O sistema pode ser utilizado através do link: https://td7-freelancer-project.fly.dev/
+
 ##  Sobre o Projeto
 
 Projeto desenvolvido como conclusão da primeira etapa da sétima turma do [treinadev](https://treinadev.com.br/).
