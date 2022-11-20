@@ -12,7 +12,15 @@
 
   <body>
     <%= render "shared/header"%>
-    <%= yield %>
+    <div class='conteiner'>  
+      <% flash.each do |type, message| %>
+        <div class="mt-3 alert alert-<%= type == 'alert' ? 'danger' : 'success'%> alert-dismissible fade show" role="alert">
+            <%= message %>
+        </div>
+      <% end %>
+
+      <%= yield %>
+    </div>
     <%= render "shared/footer"%>
   </body>
 </html>

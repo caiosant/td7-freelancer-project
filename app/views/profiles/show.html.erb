@@ -1,46 +1,50 @@
-<% if freelancer_signed_in? && @profile.freelancer == current_freelancer%>
-    <h1>Meu Perfil</h1>
-<% else %>
-    <h1>Perfil de <%= @profile.social_name%></h1>
+<div class="container shadow p-3 mt-5 bg-body rounded col-4">
+    <% if freelancer_signed_in? && @profile.freelancer == current_freelancer%>
+        <div class="text-center">
+            <h1 class="text-center d-inline">Meu Perfil</h1>
+            <% if @profile.avatar.present?%>
+                <%= image_tag @profile.avatar, alt: "avatar-profile", :size => "100x100", class:"img-fluid img-thumbnail" %>
+            <% end %>
+        </div>
+ 
+    <% else %>
+        <h1>Perfil de <%= @profile.social_name%></h1>
+        <% if project_owner_signed_in? && @profile.freelancer.freelancer_favorites.where("freelancer_id = ? AND project_owner_id = ?", @profile.freelancer.id, current_project_owner.id).present? %>
+            <h3>Freelancer Favorito</h3>
+        <% end %>
+    <% end %>
+
+
+
+    <div>
+    Nome Completo: <%= @profile.full_name %>
+
+    </div>
+
+
+    <div>
+    Nome Social: <%= @profile.social_name %>
+    </div>
+
+    <div>
+    Data de Nascimento: <%= I18n.l(@profile.birth_date) %>
+    </div>
+
+    <div>
+    Área de Atuação: <%= @profile.occupation_area.name %>
+    </div>
+
+    <div>
+    Descrição: <%= @profile.description %>
+    </div>
+
     <% if project_owner_signed_in? && @profile.freelancer.freelancer_favorites.where("freelancer_id = ? AND project_owner_id = ?", @profile.freelancer.id, current_project_owner.id).present? %>
-        <h3>Freelancer Favorito</h3>
+        <%= link_to 'Retirar dos Favoritos', profile_freelancers_favorite_path(@profile, @profile.freelancer.freelancer_favorites.where("freelancer_id = ? AND project_owner_id = ?", @profile.freelancer.id, current_project_owner.id)[0].id), method: :delete %> 
+    <% elsif project_owner_signed_in?  %>
+        <%= link_to 'Favoritar', profile_freelancers_favorites_path(@profile), method: :post %>
     <% end %>
-<% end %>
 
-<div>
-    <% if @profile.avatar.present?%>
-        <%= image_tag @profile.avatar, alt: "avatar-profile" %>
+    <% if freelancer_signed_in? && @profile.freelancer == current_freelancer%>
+        <%= link_to 'Editar', edit_profile_path, class: 'btn btn-primary mt-3 form-control' %>
     <% end %>
 </div>
-
-<div>
-Nome Completo: <%= @profile.full_name %>
-
-</div>
-
-
-<div>
-Nome Social: <%= @profile.social_name %>
-</div>
-
-<div>
-Data de Nascimento: <%= I18n.l(@profile.birth_date) %>
-</div>
-
-<div>
-Área de Atuação: <%= @profile.occupation_area.name %>
-</div>
-
-<div>
-Descrição: <%= @profile.description %>
-</div>
-
-<% if project_owner_signed_in? && @profile.freelancer.freelancer_favorites.where("freelancer_id = ? AND project_owner_id = ?", @profile.freelancer.id, current_project_owner.id).present? %>
-    <%= link_to 'Retirar dos Favoritos', profile_freelancers_favorite_path(@profile, @profile.freelancer.freelancer_favorites.where("freelancer_id = ? AND project_owner_id = ?", @profile.freelancer.id, current_project_owner.id)[0].id), method: :delete %> 
-<% elsif project_owner_signed_in?  %>
-    <%= link_to 'Favoritar', profile_freelancers_favorites_path(@profile), method: :post %>
-<% end %>
-
-<% if freelancer_signed_in? && @profile.freelancer == current_freelancer%>
-    <%= link_to 'Editar', edit_profile_path %>
-<% end %>
