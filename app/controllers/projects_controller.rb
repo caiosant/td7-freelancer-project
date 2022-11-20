@@ -47,7 +47,11 @@ class ProjectsController < ApplicationController
   end
 
   def search
-    @projects = Project.where('title like ? OR description like ?', "%#{params[:q]}%", "%#{params[:q]}%")
+    if current_freelancer.nil?
+      redirect_to root_path
+    else
+     @projects = Project.where('title like ? OR description like ?', "%#{params[:q]}%", "%#{params[:q]}%")
+    end
   end
 
   private
