@@ -1,39 +1,34 @@
-<header>
-    <div class='logo'>
-        <h1><%= link_to 'TD7-Freelancers', root_path %></h1>
+<header class=''>
+    <nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="<%= root_path %>">Freelancer-TD7</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <% if freelancer_signed_in? %>
+                        <li class="nav-item"><%= link_to 'Projetos Disponíveis', projects_path, class: "nav-link active"%></li>
+                        <li class="nav-item"><%= link_to 'Meus Projetos', my_projects_projects_path, class: "nav-link active" %></li>
+                        <li class="nav-item"><%= link_to 'Minhas Propostas', my_proposals_path, class: "nav-link active" %></li>
+                        <li class="nav-item"><%= link_to current_freelancer.email, profile_path(current_freelancer.profile.id), class: "nav-link active" %></li>
+                        <li class="nav-item"><%= link_to 'Logout', destroy_freelancer_session_path, method: 'delete', class: "nav-link active"%></li>
+                <% elsif project_owner_signed_in?  %>
+                        <li class="nav-item"> <%= link_to 'Cadastrar Projeto', new_project_path, class: "nav-link active" %> </li>
+                        <li class="nav-item"> <%= link_to 'Meus Projetos', my_projects_projects_path, class: "nav-link active" %> </li>
+                        <li class="nav-item"> <%= link_to "Usuário: #{current_project_owner.email}", edit_project_owner_registration_path(), class: "nav-link active" %> </li>
+                        <li class="nav-item"> <%= link_to 'Logout', destroy_project_owner_session_path, method: 'delete', class: "nav-link active"%> </li>
+            <% end %>
+      </ul>
+      
+      <% if freelancer_signed_in? %>
+        <%= form_with url: search_path, class:"d-flex", method: :get do %>
+            <%= text_field_tag :q, nil, placeholder:"Procurar Projeto", class:"form-control me-2"  %>
+            <%= submit_tag 'Pesquisar', class:"btn btn-outline-success" %>
+        <% end %>
+      <% end %>
     </div>
-    
-    <% if freelancer_signed_in? %>
-        <div class='menu'>
-            <nav>
-                <ul>
-                    <%= link_to 'Projetos Disponíveis', projects_path %>
-                    <%= link_to 'Meus Projetos', my_projects_projects_path %>
-                    <%= link_to 'Minhas Propostas', my_proposals_path %>
-                    <%= link_to current_freelancer.email, profile_path(current_freelancer.profile.id) %>
-                    <%= link_to 'Logout', destroy_freelancer_session_path, method: 'delete'%>
-                </ul>
-            </nav>
-        </div>
-    <% elsif project_owner_signed_in?  %>
-        <div class='menu'>
-            <nav>
-                <ul>
-                    <li> <%= link_to 'Cadastrar Projeto', new_project_path %> </li>
-                    <li> <%= link_to 'Meus Projetos', my_projects_projects_path %> </li>
-                    <li> <%= current_project_owner.email %> </li>
-                    <li> <%= link_to 'Logout', destroy_project_owner_session_path, method: 'delete'%> </li>
-                </ul>
-            </nav>
-        </div>
-    <% end %>
-</header>
+  </div>
+</nav>
 
-<% if notice %>
-    <div class="alert alert-info" role="alert">
-        <%= notice %>
-    </div>
-<% end %>
-    <div class="alert alert-warning" role="alert">
-        <%= alert %>
-    </div>
+</header>

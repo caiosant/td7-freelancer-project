@@ -1,85 +1,107 @@
-Projeto: <%= @project.title %><br>
-Descrição: <%= @project.description %><br>
-Valor Máximo por Hora: <%= number_to_currency @project.max_value %><br>
-Data Limite para Propostas: <%= I18n.l(@project.deadline) %><br>
-Habilidade(s): <% @project.abilities.each do |ability| %>
-                <%= ability.name %>
-             <% end %><br>
-Forma de trabalho: <%= Project.human_enum_name(:locations, @project.location) %><br>
-Status do Projeto: <%= I18n.t(@project.project_status)%>
-
-<% if project_owner_signed_in? && @project.project_owner == current_project_owner && @project.proposals.where(proposal_status: 'accepted').empty?%>
-         <div>
-            Time do Projeto:
+<div class="container shadow p-3 my-5 bg-body rounded col-4">
+   <ul class="list-group">
+      <li class="list-group-item"> 
+         <div class="text-center fs-5 fw-bold">
+            Projeto
+         </div>   
+         <%= @project.title %>
+      </li>
+      <li class="list-group-item"> 
+         <div class="text-center fs-5 fw-bold">
+            Descrição
+         </div>   
+         <%= @project.description %>
+      </li>
+      <li class="list-group-item"> 
+         <div class="text-center fs-5 fw-bold">
+            Valor Máximo por Hora
+         </div>   
+         <%= number_to_currency @project.max_value %>
+      </li>
+      <li class="list-group-item"> 
+         <div class="text-center fs-5 fw-bold">
+            Data Limite para Propostas
+         </div>   
+         <%= I18n.l(@project.deadline) %>
+      </li>
+      <li class="list-group-item"> 
+         <div class="text-center fs-5 fw-bold">
+            Habilidade(s)
+         </div>   
+         <% @project.abilities.each do |ability| %>
+            <%= ability.name %>
+         <% end %>
+      </li>
+      <li class="list-group-item"> 
+         <div class="text-center fs-5 fw-bold">
+            Forma de trabalho
+         </div>   
+         <%= Project.human_enum_name(:locations, @project.location) %>
+      </li>
+      <li class="list-group-item"> 
+         <div class="text-center fs-5 fw-bold">
+            Status do Projeto
          </div>
-         <div>
-            Ainda não existem propostas aceitas
-         </div>
-<% elsif (project_owner_signed_in? && @project.project_owner == current_project_owner) || (freelancer_signed_in? && @project.proposals.where("proposal_status = ? AND freelancer_id = ?", "accepted", current_freelancer.id)) %>
-      <div>
-         <div>
-            Time do Projeto:
-         </div>
-         <div>
-            <% @project.proposals.where(proposal_status: 'accepted').each do |proposal| %>
+         <%= I18n.t(@project.project_status) %>
+      </li>
+   
+      <% if (project_owner_signed_in? && @project.project_owner == current_project_owner && @project.proposals.where(proposal_status: 'accepted').empty?) || ( freelancer_signed_in? && @project.proposals.where(proposal_status: 'accepted').empty?) %>
+               <li class="list-group-item">
+                  <div class="text-center fs-5 fw-bold">
+                     Time do Projeto
+                  </div> 
+                  Ainda não existem propostas aceitas
+               </li>
+      <% elsif (project_owner_signed_in? && @project.project_owner == current_project_owner) || (freelancer_signed_in? && @project.proposals.where("proposal_status = ? AND freelancer_id = ?", "accepted", current_freelancer.id)) %>
+            <div>
                <div>
-                  <%= link_to proposal.freelancer.profile.social_name, proposal.freelancer.profile %>
-                  <% if (project_owner_signed_in? && @project.project_owner == current_project_owner && @project.project_status == 'finished' && @project.freelancer_feedbacks.where('freelancer_id = ?', proposal.freelancer.id).present?) %>
+                  Time do Projeto:
+               </div>
+               <div>
+                  <% @project.proposals.where(proposal_status: 'accepted').each do |proposal| %>
                      <div>
-                        Feedback já realizado
+                        <%= link_to proposal.freelancer.profile.social_name, proposal.freelancer.profile %>
+                        <% if (project_owner_signed_in? && @project.project_owner == current_project_owner && @project.project_status == 'finished' && @project.freelancer_feedbacks.where('freelancer_id = ?', proposal.freelancer.id).present?) %>
+                           <div>
+                              Feedback já realizado
+                           </div>
+                        <% else %>
+                           <%= link_to 'Realizar Feedback', new_project_freelancer_freelancer_feedback_path(@project.id, proposal.freelancer.id) %>
+                        <% end %>
                      </div>
-                  <% else %>
-                     <%= link_to 'Realizar Feedback', new_project_freelancer_freelancer_feedback_path(@project.id, proposal.freelancer.id) %>
                   <% end %>
                </div>
-            <% end %>
-         </div>
-      </div>
-<% end %>
-
-<% if project_owner_signed_in? && @project.project_owner == current_project_owner && @project.project_status != 'finished'%>
-   <%= link_to 'Finalizar Projeto', finish_project_path, method: 'post' %>
-<% end %>
-
-<% if freelancer_signed_in? && current_freelancer.projects.include?(@project)%>
-   <div>
-      Você já enviou proposta para este projeto, clique aqui, para ver ela.
-   </div>
-<% elsif project_owner_signed_in? && @project.project_owner == current_project_owner %>
-   <h3>Propostas:</h3>
-   <% if @project.proposals.where(proposal_status: 'pending').empty? %>
-      <div>
-         Não existem propostas para serem avaliadas neste momento.
-      </div>
-   <% else %>
-      <% @project.proposals.where(proposal_status: 'pending').each do |proposal|%>
-         <li>Freelancer: <%=link_to proposal.freelancer.profile.social_name, proposal.freelancer.profile %></li>
-         <li>Valor por hora: <%= number_to_currency proposal.hour_value %></li>
-         <li>Previsão de entrega: <%= I18n.l(proposal.deadline_proposal) %>
-         <li>Status da Proposta: <%= I18n.t(proposal.proposal_status) %></li>
-         <li id=<%= "proposal_#{proposal.id}" %>><%= link_to 'Visualizar Proposta Completa', project_proposal_path(proposal.id) %>
-         <li id=<%= "accept_proposal_#{proposal.id}" %>><%= link_to 'Aceitar Proposta', accept_project_proposal_path(proposal.id), method: :post %></li>
-         <li id=<%= "reject_proposal_#{proposal.id}" %>><%= link_to 'Rejeitar Proposta', reject_project_proposal_path(proposal.id), method: :post %></li>
+            </div>
       <% end %>
+   </ul>
+
+
+   <% if project_owner_signed_in? && @project.project_owner == current_project_owner && @project.project_status != 'finished'%>
+      <%= link_to 'Finalizar Projeto', finish_project_path, method: 'post' %>
    <% end %>
-<% else %>
-   <%= form_with model: @proposal, url: project_proposals_path(@project) do |f|%>
+
+   <% if freelancer_signed_in? && current_freelancer.projects.include?(@project)%>
       <div>
-         <%= f.label :application_reason%>
-         <%= f.text_field :application_reason%>
+         Você já enviou proposta para este projeto, clique aqui, para ver ela.
       </div>
-      <div>
-         <%= f.label :hours_value%>
-         <%= f.number_field :hours_value%>
-      </div>
-      <div>
-         <%= f.label :hours%>
-         <%= f.number_field :hours%>
-      </div>
-      <div>
-         <%= f.label :deadline_proposal%>
-         <%= f.date_field :deadline_proposal%>
-      </div>
-      <%= f.submit 'Enviar Proposta' %>
+   <% elsif project_owner_signed_in? && @project.project_owner == current_project_owner %>
+      <h3>Propostas:</h3>
+      <% if @project.proposals.where(proposal_status: 'pending').empty? %>
+         <div>
+            Não existem propostas para serem avaliadas neste momento.
+         </div>
+      <% else %>
+         <% @project.proposals.where(proposal_status: 'pending').each do |proposal|%>
+            <li>Freelancer: <%=link_to proposal.freelancer.profile.social_name, proposal.freelancer.profile %></li>
+            <li>Valor por hora: <%= number_to_currency proposal.hour_value %></li>
+            <li>Previsão de entrega: <%= I18n.l(proposal.deadline_proposal) %>
+            <li>Status da Proposta: <%= I18n.t(proposal.proposal_status) %></li>
+            <li id=<%= "proposal_#{proposal.id}" %>><%= link_to 'Visualizar Proposta Completa', project_proposal_path(proposal.id) %>
+            <div id=<%= "accept_proposal_#{proposal.id}" %>><%= link_to 'Aceitar Proposta', accept_project_proposal_path(proposal.id), method: :post, class:"btn btn-success mt-3" %></li>
+            <div id=<%= "reject_proposal_#{proposal.id}" %>><%= link_to 'Rejeitar Proposta', reject_project_proposal_path(proposal.id), method: :post, class:"btn btn-danger mt-3" %></li>
+         <% end %>
+      <% end %>
+   <% else %>
+      <%= render "projects/shared/proposal_apply"%>
    <% end %>
-<% end %>
+</div>

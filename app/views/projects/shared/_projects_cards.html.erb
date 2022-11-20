@@ -1,0 +1,21 @@
+<div class="row row-cols-1 row-cols-md-4">
+    <% @projects.each do |project|%>
+        <div>
+            <div class="card mt-2" style="width: 30rem; height: 15rem">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title text-center"><%= project.title %></h5>
+                    <h6 class="mb-2">Data Limite para Propostas: <%= I18n.l(project.deadline)%> </h6>
+                    <h6 class="mb-2">Valor máximo por hora: <%= project.max_value %></h6>
+                    <h6 class="mb-2">Habilidade(s): <% project.abilities.each do |a| %>
+                                                        <%= a.name %>
+                                                    <% end %>
+                    </h6>
+                    
+                    <p class="card-text"><%= project.description.truncate(100) %></p>
+                    <%= link_to 'Ler Mais', project, class:'btn btn-primary mt-auto' %>
+
+                </div>
+            </div>
+        </div>
+    <% end %>
+</div>

@@ -1,9 +1,34 @@
-<li>Freelancer: <%= link_to @proposal.freelancer.profile.social_name, profile_path(@freelancer)%></li>
-<li>Valor por Hora: <%= number_to_currency @proposal.hour_value %></li>
-<li>Quantidade de horas: <%= @proposal.hours%></li>
-<li>Motivação: <%= @proposal.application_reason%></li>
-<li><%= I18n.t(@proposal.proposal_status) %></li>
-<% if project_owner_signed_in? && @proposal.project.project_owner == current_project_owner && @proposal.proposal_status == 'pending' %>
-    <li><%= link_to 'Aceitar Proposta', accept_project_proposal_path(@proposal.id), method: :post %></li>
-    <li><%= link_to 'Rejeitar Proposta', reject_project_proposal_path(@proposal.id), method: :post %></li>
-<% end %>
+<div class="container shadow p-3 my-5 bg-body rounded col-4">
+    <ul class="list-group">
+        <li class="list-group-item">
+            <div class="text-center fs-5 fw-bold">
+                Freelancer
+            </div>   
+            <%= link_to @proposal.freelancer.profile.social_name, profile_path(@freelancer)%>
+        </li>
+        <li class="list-group-item">
+            <div class="text-center fs-5 fw-bold">
+                Valor por Hora
+            </div>
+            <%= number_to_currency @proposal.hour_value %>
+        </li>
+        <li class="list-group-item">
+            <div class="text-center fs-5 fw-bold">
+                Quantidade de horas
+            </div>  
+            <%= @proposal.hours%></li>
+        <li class="list-group-item">
+            <div class="text-center fs-5 fw-bold">
+                Motivação
+            </div>  
+            <%= @proposal.application_reason%></li>
+        <li class="list-group-item">
+            <div class="text-center fs-5 fw-bold">
+                Status da Proposta
+            </div>  <%= I18n.t(@proposal.proposal_status) %></li>
+        <% if project_owner_signed_in? && @proposal.project.project_owner == current_project_owner && @proposal.proposal_status == 'pending' %>
+            <li><%= link_to 'Aceitar Proposta', accept_project_proposal_path(@proposal.id), method: :post %></li>
+            <li><%= link_to 'Rejeitar Proposta', reject_project_proposal_path(@proposal.id), method: :post %></li>
+        <% end %>
+    </ul>
+</div>

@@ -7,12 +7,14 @@ habilidade5 = Ability.create!({name: 'HTML5'})
 habilidade6 = Ability.create!({name: 'CSS3'})
 habilidade7 = Ability.create!({name: 'React'})
 habilidade8 = Ability.create!({name: 'Flutter'})
+habilidade9 = Ability.create!({name: 'Tableau'})
+habilidade10 = Ability.create!({name: 'SQL'})
 
 # Criando áreas de atuação:
 area_atuacao1 = OccupationArea.create!({name: 'Desenvolvimento Web'})
 area_atuacao2 = OccupationArea.create!({name: 'Desenvolvimento Backend'})
 area_atuacao3 = OccupationArea.create!({name: 'Desenvolvimento Frontend'})
-area_atuacao4 = OccupationArea.create!({name: 'Desenvolvimento Frontend'})
+area_atuacao4 = OccupationArea.create!({name: 'Engenharia de Dados'})
 
 # Criando os Project Owners:
 project_owner1 = ProjectOwner.create!({email: 'projectowner1@gmail.com', password: '123456'})
@@ -21,7 +23,7 @@ project_owner2 = ProjectOwner.create!({email: 'projectowner2@gmail.com', passwor
 # Criando os Projetos:
 project1 = Project.create!({title: 'Projeto de desenvolvimento web', description:'Projeto focado no desenvolvimento de uma plataforma web para um colégio',
                             max_value: 200, deadline: 3.days.from_now, abilities: [habilidade2, habilidade3, habilidade7], project_owner: project_owner1, location: 'remotely'})
-project2 = Project.create!({title: 'Atualização de Plafatorma antiga', description:'Projeto focado em atualizar a plataforma da minha empresa',
+project2 = Project.create!({title: 'Atualização de Plafatorma antiga', description:'Projeto focado em atualizar a plataforma da minha empresa que está obsoleta, preciso de ajuda',
                             max_value: 100, deadline: 5.days.from_now, abilities: [habilidade2, habilidade3, habilidade7, habilidade8], project_owner: project_owner2, location: 'remotely'})
 
 # Criando os Freelancers:

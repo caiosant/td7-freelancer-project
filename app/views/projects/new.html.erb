@@ -1,46 +1,48 @@
-<%= form_with(model: @project) do |f| %>
-  <div>
-    <%= f.label :title %>
-    <% @project.errors.full_messages_for(:title).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-    <%= f.text_field :title %>
-  </div>
-  <div>
-    <%= f.label :description %>
-    <% @project.errors.full_messages_for(:description).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-    <%= f.text_field :description %>
-  </div>
-  <div>
-    <%= f.label :max_value %>
-    <% @project.errors.full_messages_for(:max_value).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-    <%= f.number_field :max_value %>
-  </div>
-  <div>
-    <%= f.label :abilities%>
-    <% @project.errors.full_messages_for(:abilities).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-    <%= f.collection_check_boxes :ability_ids, Ability.all, :id, :name%>
-  </div>
-  <div>
-    <%= f.label :deadline %>
-    <% @project.errors.full_messages_for(:deadline).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-    <%= f.date_field :deadline %>
-  </div>
-  <div>
-    <%= f.label :location %>
-    <% @project.errors.full_messages_for(:location).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-    <%= f.select :location, options_for_select(Project.location_attributes_for_select), {include_blank: 'Selecione uma Opção'} %>
-  </div>
+<div class="container shadow p-3 mt-5 bg-body rounded col-4">
+  <%= form_with(model: @project) do |f| %>
+    <div>
+      <%= f.label :title, class:"form-label" %>
+      <% @project.errors.full_messages_for(:title).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+      <%= f.text_field :title, class:"form-control" %>
+    </div>
+    <div>
+      <%= f.label :description, class:"form-label" %>
+      <% @project.errors.full_messages_for(:description).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+      <%= f.text_area :description, class:"form-control", rows: 5 %>
+    </div>
+    <div>
+      <%= f.label :max_value, class:"form-label" %>
+      <% @project.errors.full_messages_for(:max_value).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+      <%= f.number_field :max_value, class:"form-control" %>
+    </div>
+    <div class="form-check">
+      <%= f.label :abilities, class: "form-check-label" %><br>
+      <% @project.errors.full_messages_for(:abilities).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+      <%= f.collection_check_boxes :ability_ids, Ability.all, :id, :name, class: "form-check-input"%>
+    </div>
+    <div>
+      <%= f.label :deadline, class:"form-label" %>
+      <% @project.errors.full_messages_for(:deadline).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+      <%= f.date_field :deadline, class:"form-control" %>
+    </div>
+    <div>
+      <%= f.label :location, class:"form-label" %>
+      <% @project.errors.full_messages_for(:location).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+      <%= f.select :location, options_for_select(Project.location_attributes_for_select), {include_blank: 'Selecione uma Opção'}, class:"form-select" %>
+    </div>
 
-  <%= f.submit 'Cadastar Projeto' %>
-<% end %>
+    <%= f.submit 'Cadastar Projeto', class:"btn btn-primary mt-3 form-control" %>
+  <% end %>
+</div>
